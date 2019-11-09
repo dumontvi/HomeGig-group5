@@ -1,0 +1,18 @@
+<footer class="footer bg-dark">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 h-100 text-center text-lg-left my-auto">
+        <ul class="list-inline mb-2">
+          <%= render partial: 'layouts/footer/footer_link', locals: {name: 'About', path: about_path} %>
+          <li class="list-inline-item">&sdot;</li>
+          <%= render partial: 'layouts/footer/footer_link', locals: {name: 'FAQ', path: faq_path} %>
+          <li class="list-inline-item">&sdot;</li>
+          <%= render partial: 'layouts/footer/footer_link', locals: {name: 'Privacy Policy', path: privacy_policy_path} %>
+          <li class="list-inline-item">&sdot;</li>
+          <%= render partial: 'layouts/footer/footer_link', locals: {name: 'Terms of Use', path: terms_of_use_path} %>
+        </ul>
+        <p class="text-muted small mb-4 mb-lg-0">&copy; HomeGig 2019. All Rights Reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>

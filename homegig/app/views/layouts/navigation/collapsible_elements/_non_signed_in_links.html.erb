@@ -1,6 +1,8 @@
 <li class="nav-item">
-    <%= link_to 'Login', login_path, class: 'nav-link' %>
+    <%= render partial: 'layouts/navigation/collapsible_elements/nav_bar_link',
+                locals: {name: 'Login', path: login_path} %>
 </li>
 <li class="nav-item">
-    <%= link_to 'Signup', signup_path, class: 'nav-link' %>
+    <%= render partial: 'layouts/navigation/collapsible_elements/nav_bar_link',
+                locals: {name: 'Sign Up', path: signup_path} %>
 </li>
