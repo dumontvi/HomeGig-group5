@@ -1,4 +1,4 @@
-<li class="nav-item nav-bar-link">
-    <%= render partial: 'layouts/navigation/generic_link', 
-                locals: {name: name, path: path, class_name: "nav-link nav-bar-link"} %>
+<li class="nav-item nav-bar-link <%= local_assigns.fetch(:nav_bar_link_class, '') %>">
+    <%= render 'layouts/navigation/generic_link', 
+        name: name, path: path, method: local_assigns.fetch(:method, nil), class_name: "nav-link nav-bar-link" %>
 </li>

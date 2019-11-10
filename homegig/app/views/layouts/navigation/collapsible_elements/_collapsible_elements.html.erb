@@ -1,14 +1,7 @@
 <div class="collapse navbar-collapse" id="navbarResponsive">
   <ul class="navbar-nav ml-auto">
-    <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownGigs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Gigs
-      </a>
-      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownGigs">
-        <a class="dropdown-item" href="#">Offering</a>
-        <a class="dropdown-item" href="#">Seeking</a>
-      </div>
-    </li>
+    <%= render 'layouts/navigation/dropdown', dropdown_label: 'Gigs', 
+                links: [{name:'Offering', path: root_path}, {name:'Seeking', path:root_path}] %>
     <%= render collapsible_links_partial_path %>
   </ul>
 </div>
