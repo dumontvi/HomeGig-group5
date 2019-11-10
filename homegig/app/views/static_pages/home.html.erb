@@ -1,27 +1,15 @@
 <div class="container" >
-    <h1 class="my-4">Welcome to HomeGig</h1>
-    <div class="row">
-        <div class="col-lg-6 mb-6">
-            <div class="card h-100">
-                <h4 class="card-header">Offering</h4>
-                <div class="card-body">
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-                </div>
-                <div class="card-footer">
-                    <a href="#" class="btn btn-primary">Learn More</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6 mb-6">
-            <div class="card h-100">
-                <h4 class="card-header">Seeking</h4>
-                <div class="card-body">
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis ipsam eos, nam perspiciatis natus commodi similique totam consectetur praesentium molestiae atque exercitationem ut consequuntur, sed eveniet, magni nostrum sint fuga.</p>
-                </div>
-                <div class="card-footer">
-                    <a href="#" class="btn btn-primary">Learn More</a>
+    <h1 class="my-4  text-center">What are you looking for today?</h1>
+    <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
+        <% options = [{title: 'Offering', description: 'Find other people offering their skills as a service.'},
+                        {title: 'Seeking', description: 'Find people looking for someone to do the job.'}] %>
+        <% options.each do |option| %>
+            <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 pb-md-5 px-md-5 text-center text-white overflow-hidden btn-change">
+                <div class="my-3 py-3">
+                    <h2 class="display-5"><%= "#{option[:title]}" %></h2>
+                    <p class="lead"><%= "#{option[:description]}" %></p>
                 </div>
             </div>
-        </div>
+        <% end %>
     </div>
 </div>

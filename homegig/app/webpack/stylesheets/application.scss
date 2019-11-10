@@ -33,6 +33,7 @@ body {
 }
 
 .footer {
+    margin-top: 1rem;
     padding-top: 1rem;
     flex-shrink: 0;
 }
@@ -41,5 +42,13 @@ body {
     color: $navItemColor;
     &:hover, &:focus {
         color: $navItemColorHover;
+    }
+}
+
+.btn-change {
+    transition: all 0.5s ease-in-out;
+    &:hover {
+        transform: scale(1.1);
+        background: $navItemColor;
     }
 }
