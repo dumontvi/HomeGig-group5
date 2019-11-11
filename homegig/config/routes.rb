@@ -14,5 +14,6 @@ Rails.application.routes.draw do
   get 'faq', to: 'static_pages#faq'
   get 'privacy_policy', to: 'static_pages#privacy_policy'
   get 'terms_of_use', to: 'static_pages#terms_of_use'
+  get 'contact', to: 'static_pages#contact'
 
 end
