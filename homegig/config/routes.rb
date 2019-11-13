@@ -16,4 +16,6 @@ Rails.application.routes.draw do
   get 'terms_of_use', to: 'static_pages#terms_of_use'
   get 'contact', to: 'static_pages#contact'
 
+  get 'offerings', to: 'offerings#index'
+
 end
