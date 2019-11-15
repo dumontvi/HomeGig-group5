@@ -2,8 +2,8 @@
     Component to implement a link
     @param name [string] name to be displayed
     @param path [routes_prefix] route from routes table
-    @param method [routes_verb] method for specified route
-    @param class_name [string] css class for link    
+    @param method [routes_verb, nil] method for specified route
+    @param class_name [string, nil] css class for link    
 %>
 
-<%= link_to "#{name}", path, method: local_assigns.fetch(:method, nil), class: "#{class_name} generic-link" %>
+<%= link_to "#{name}", path, method: local_assigns.fetch(:method, nil), class: "#{local_assigns.fetch(:class_name, nil)} generic-link" %>

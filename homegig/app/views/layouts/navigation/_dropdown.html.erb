@@ -12,7 +12,7 @@
     <div class="dropdown-menu dropdown-menu-right bg-dark" aria-labelledby="navbarDropdown">
     <% links.each do |link| %>
         <%= render 'layouts/navigation/generic_link', 
-            name: link[:name], path: link[:path], method: link.fetch(:method, nil), class_name: "dropdown-item bg-dark" %>
+            name: link[:name], path: link[:path], method: link.fetch(:method, nil), class_name: "dropdown-item bg-dark nav-bar-link" %>
     <% end %>
     </div>
 </li>

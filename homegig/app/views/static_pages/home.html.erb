@@ -1,6 +1,6 @@
 <div class="container" >
     <h1 class="my-4 display-4 text-center font-weight-normal">What are you looking for today?</h1>
-    <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3 bg-light">
+    <div class="d-md-flex flex-md-equal w-100 m-md-3 p-md-3 bg-primary">
         <% options = [{title: 'Offering', description: 'Find other people offering their skills as a service.', url: root_path},
                         {title: 'Seeking', description: 'Find people looking for someone to do the job.', url: root_path}] %>
         <% options.each do |option| %>
@@ -16,7 +16,7 @@
 
     <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center">
         <h1 class="font-weight-normal">Register now. It's free!</h1>
-        <p class="lead font-weight-normal">Create an account to start connecting other professionals.</p>
+        <p class="lead font-weight-normal">Create an account to start connecting with other professionals.</p>
         <%= render 'layouts/navigation/generic_link', name:'Register', path:signup_path, class_name:'btn btn-primary'%>
     </div>
 
