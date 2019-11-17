@@ -1,14 +1,14 @@
-<div align="center">
-    <h1> Profile Management </h1>
-    <p> This page will provide all the user information</p>
-    <p> He will have the option to edit his account, view his gigs</p>
-</div><br>
-<div style="padding-left: 50px; padding-bottom: 20px">
-    <%= link_to 'Edit Profile', edit_user_registration_path(current_user) %><br>
-</div>
-<div style="padding-left: 50px; padding-bottom: 20px">
-    <%= link_to 'Manage Gigs', manage_url(current_user) %><br>
-</div>
-<div style="padding-left: 50px; padding-bottom: 20px">
-    <%= link_to 'Log out', destroy_user_session_path, method: :delete %><br>
+<div class="container">
+    <h1 class="my-4 display-4 text-center font-weight-normal">Profile Management</h1>
+    <% options = [{title: 'Account Summary', description: 'Summarize Account Information', url: edit_user_registration_path(current_user)},
+                {title: 'Edit Profile', description: 'Edit your personal settings', url:  edit_user_registration_path(current_user)},
+                {title: 'Make a Gig', description: 'Make a new gig', url: new_gig_path},
+                {title: 'Manage Gigs', description: 'Manage your gigs', url: manage_url(current_user)},
+                {title: 'Log out', description: 'Sign out of your profile', url: destroy_user_session_path, method: :delete}] %>
+
+    <div class="btn-group" style="width:100%">
+            <% options.each do |option| %>
+                <button style="width:20%"><%= option[:title] %></button>
+            <%end%>    
+    </div>
 </div>
