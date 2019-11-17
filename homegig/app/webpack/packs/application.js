@@ -20,3 +20,4 @@ import '../stylesheets/application'
 import 'jquery';
 import 'bootstrap';
 import "@fortawesome/fontawesome-free/js/all";
+import './stripe_payment';

@@ -18,4 +18,10 @@ Rails.application.routes.draw do
 
   get 'offerings', to: 'offerings#index'
 
+  get "stripe/connect", to: 'stripe#connect', as: :stripe_connect
+  get 'stripe/register', to: 'stripe#register'
+  get 'stripe/public_key', to: 'stripe#public_key'
+  get 'stripe/create_checkout_session', to: 'stripe#create_checkout_session'
+  get 'pay', to: 'stripe#pay'  
+
 end
