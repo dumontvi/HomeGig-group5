@@ -1,0 +1,22 @@
+<h1>GIGS</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Price</th>
+    <th>User Email</th>
+    <th colspan="4"></th>
+  </tr>
+ 
+  <% @gigs.each do |gig| %>
+    <tr>
+      <td><%= gig.title %></td>
+      <td><%= gig.description %></td>
+      <td><%= gig.price %></td>
+      <td><%= gig.user.email %></td>
+      <td><%= link_to 'Show', gig_path(gig) %></td>
+      <td><%= link_to 'Edit', edit_gig_path(gig) %></td>
+    </tr>
+  <% end %>
+</table>
