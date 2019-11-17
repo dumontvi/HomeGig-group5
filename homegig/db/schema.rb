@@ -21,6 +21,16 @@ ActiveRecord::Schema.define(version: 2019_11_16_004033) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "gigs", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.string "price"
+    t.boolean "type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.text "title"
     t.text "content"
@@ -34,12 +44,12 @@ ActiveRecord::Schema.define(version: 2019_11_16_004033) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.string "name", default: "", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "name", default: "", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "stripe_user_id"

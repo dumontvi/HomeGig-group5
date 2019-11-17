@@ -1,0 +1,14 @@
+<div class="container">
+    <h1 class="my-4 display-4 text-center font-weight-normal">Profile Management</h1>
+    <% options = [{title: 'Account Summary', description: 'Summarize Account Information', url: edit_user_registration_path(current_user)},
+                {title: 'Edit Profile', description: 'Edit your personal settings', url:  edit_user_registration_path(current_user)},
+                {title: 'Make a Gig', description: 'Make a new gig', url: new_gig_path},
+                {title: 'Manage Gigs', description: 'Manage your gigs', url: manage_url(current_user)},
+                {title: 'Log out', description: 'Sign out of your profile', url: destroy_user_session_path, method: :delete}] %>
+
+    <div class="btn-group" style="width:100%">
+            <% options.each do |option| %>
+                <button style="width:20%"><%= option[:title] %></button>
+            <%end%>    
+    </div>
+</div>

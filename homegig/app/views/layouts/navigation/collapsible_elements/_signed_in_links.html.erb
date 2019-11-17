@@ -1,7 +1,7 @@
 <%= render 'layouts/navigation/dropdown', 
     dropdown_class: 'pc-menu',
     dropdown_label: current_user.name, 
-    links: [{name:'Edit Profile', path:edit_user_registration_path},
+    links: [{name:'Profile Setting', path: profile_management_path},
             {name:'Log Out', path:destroy_user_session_path, method: :delete}] %>
 
 <li class="nav-item mobile-menu">
