@@ -44,10 +44,10 @@
         <% @posts.each do |post| %>
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+              <img class="card-img-top" src="http://placehold.it/700x400" alt="">
               <div class="card-body">
                 <h4 class="card-title">
-                  <a href="#"><%= post.title %></a>
+                  <%= link_to post.title, offering_path(post) %>
                 </h4>
                 <h5><%= post.price %></h5>
                 <p class="card-text"><%= post.content %></p>

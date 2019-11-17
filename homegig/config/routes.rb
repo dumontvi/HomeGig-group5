@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get 'contact', to: 'static_pages#contact'
 
   get 'offerings', to: 'offerings#index'
+  get '/offerings/:id', to: 'offerings#show', as: 'offering'
 
   get "stripe/connect", to: 'stripe#connect', as: :stripe_connect
   get 'stripe/register', to: 'stripe#register'
