@@ -1,0 +1,11 @@
+<h3>Review</h3>
+
+<%= form_with scope: :review, url: createReview_path, local: true do |form| %>
+    <p>
+        <%= form.text_field :content %>
+    </p>
+
+    <p>
+        <%= form.submit %>
+    </p>
+<% end %>

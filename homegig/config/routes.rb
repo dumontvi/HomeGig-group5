@@ -22,6 +22,12 @@ Rails.application.routes.draw do
   get 'offerings', to: 'offerings#index'
   get '/offerings/:id', to: 'offerings#show', as: 'offering'
 
+  devise_scope :post do
+    get '/offerings/:id/new', to: 'reviews#new', as: 'newReview'
+    post '/offerings/:id/create', to: 'reviews#create', as: 'createReview'
+  end
+
+
   get "stripe/connect", to: 'stripe#connect', as: :stripe_connect
   get 'stripe/register', to: 'stripe#register'
   get 'stripe/public_key', to: 'stripe#public_key'

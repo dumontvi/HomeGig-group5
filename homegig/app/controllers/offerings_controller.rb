@@ -7,6 +7,7 @@ class OfferingsController < ApplicationController
 
     def show
         @post = Post.find(params[:id])
+        @reviews = @post.reviews
     end
 
 end

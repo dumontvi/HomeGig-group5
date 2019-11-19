@@ -39,26 +39,22 @@
             About <%= link_to @post.user.name, offering_path(@post.user) %>
           </div>
           <div class="card-body">
-
+            <%= @post.user.about %>
           </div>
         </div>
         
         
         <div class="card card-outline-secondary my-4">
           <div class="card-header">
-            Product Reviews
+            Reviews
           </div>
           <div class="card-body">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-            <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-            <hr>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-            <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-            <hr>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-            <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-            <hr>
-            <a href="#" class="btn btn-success">Leave a Review</a>
+            <% @reviews.each do |review| %>
+                <p><%= review.content %></p>
+                <small class="text-muted">Posted by <%= review.user.name %></small>
+                <hr>
+            <% end %>
+            <%= link_to "Leave a Review", newReview_path(@post), class: "btn btn-success" %>
           </div>
         </div>
         <!-- /.card -->

@@ -13,7 +13,8 @@ def seed_users
         name: "test#{user_id}",
         email: "test#{user_id}@test.com",
         password: '123456',
-        password_confirmation: '123456'
+        password_confirmation: '123456',
+        about: "My name is #{user_id}"
       )
       user_id = user_id + 1
     end
@@ -40,10 +41,22 @@ def seed_users
           user_id: rand(1..9), 
           category_id: category.id
         )
+        post_id = post_id + 1
       end
     end
   end
   
+  def seed_reviews
+    reviewNo = 0
+    5.times do
+      Review.create(
+        content: "review Number #{reviewNo}",
+        
+
+        )
+        reviewNo = reviewNo + 1
+    end
+  end
   seed_users
   seed_categories
   seed_posts
