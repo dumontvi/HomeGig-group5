@@ -4,5 +4,6 @@ class ProfilesController < ApplicationController
   end
 
   def profile_management
+    @user = current_user
   end
 end
