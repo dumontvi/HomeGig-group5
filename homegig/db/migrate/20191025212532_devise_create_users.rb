@@ -33,7 +33,11 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       # t.datetime :locked_at
 
       t.string :name, null: false, default: ""
+<<<<<<< Updated upstream
       t.text :about, null: false, default: ""
+=======
+      t.string :profile_picture, null: false, default: ""
+>>>>>>> Stashed changes
 
       t.timestamps null: false
     end

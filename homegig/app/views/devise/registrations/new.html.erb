@@ -15,6 +15,8 @@
         <%= f.password_field :password_confirmation, 
             placeholder: 'password confirmation', 
             class: 'form-control' %>
+        <%= f.file_field :profile_picture,
+            class: 'form-control' %>
         <%= f.submit 'Sign up', 
             class: 'form-control sign-up-button' %>
       <% end %>

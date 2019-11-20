@@ -31,11 +31,11 @@ body {
 
 .content-container {
     flex: 1 0 auto;
-    padding-top: 60px;
+    padding-top: 56px;
+    box-sizing: border-box;
 }
 
 .footer {
-    margin-top: 1rem;
     padding-top: 1rem;
     flex-shrink: 0;
 }

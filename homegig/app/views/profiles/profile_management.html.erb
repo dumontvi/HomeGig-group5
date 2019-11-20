@@ -1,16 +1,60 @@
-<div class="container">
-    <h1 class="my-4 display-4 text-center font-weight-normal">Profile Management</h1>
-    <% options = [{title: 'Account Summary', description: 'Summarize Account Information', url: edit_user_registration_path(current_user)},
-                {title: 'Edit Profile', description: 'Edit your personal settings', url:  edit_user_registration_path(current_user)},
-                {title: 'Make a Gig', description: 'Make a new gig', url: new_gig_path},
-                {title: 'Manage Gigs', description: 'Manage your gigs', url: manage_url(current_user)},
-                {title: 'Log out', description: 'Sign out of your profile', url: destroy_user_session_path, method: :delete}] %>
+<div class="profile-content"> 
 
-    <div class="btn-group" style="width:100%">
-            <% options.each do |option| %>
-                <div class="box">
-                    <p><%= "#{option[:title]}" %></p>
-                </div>
-            <%end%>    
+  <div class="vertical-nav bg-white" id="sidebar">
+      <div class="py-4 px-3 mb-4 bg-light">
+        <div class="media d-flex align-items center">
+          <%= image_tag(current_user.profile_picture.url, alt: 'Profile Picture', size:'80x80', :class => "mr-3 rounded-circle img-thumbnail shawdow-sm") if current_user.profile_picture? %>
+          <div class="media-body">
+            <h4 class="mt-0 pt-2"><%= "#{current_user.name}" %></h4>
+            <p class="font-weight-light text-muted mb-0"><%= current_user.email %></p>
+          </div>
+        </div>
+      </div>
+
+      <p class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0">Profile Management</p>
+      
+      <% options = [{title: "Account Summary", url: profile_management_path, icon: "far fa-fw fa-window-maximize mr-3"},
+                    {title: "Edit Profile", url: edit_user_registration_path(current_user), icon: "fab fa-fa fa-wpforms mr-3"}] %>
+      
+      <ul class="nav flex-column mb-0">
+        <% options.each do |option| %>
+          <li class="nav-item">
+            <a href="#" class="nav-link text-dark bg-light">
+              <i class="<%= option[:icon] %>"> </i>
+              <%= option[:title] %>
+            </a>
+          </li>
+        <% end %>
+      </ul>
+
+      <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">Gigs Management</p>
+      <% options = [{title: "Manage Gigs", url: manage_url(current_user), icon: "fas fa-fw fa-columns mr-3"},
+                    {title: "Gigs Statistics", url: "", icon: "fas fa-fw fa-chart-area mr-3"}] %>
+
+      <ul class="nav flex-column mb-0 bg-white">
+        <% options.each do |option| %>
+          <li class="nav-item bg-white">
+            <a href="#" class="nav-link text-dark bg-light">
+              <i class="<%= option[:icon] %>"> </i>
+                <%= option[:title] %>
+            </a>
+          </li>
+        <% end %>
+      </ul>
+
+      <ul class="nav flex-column mb-0 bg-white pt-5">
+          <li class="nav-item bg-white">
+            <a href="#" class="nav-link text-dark bg-light">
+              <i class="fa fa-sign-out mr-3"> </i>
+                Log Out
+            </a>
+          </li>
+      </ul>
+  </div>
+
+  <div class="profile-management">
+    <div class="d-sm-flex align-items-center justify-content-between mt-4 mb-4">
+      <h1 class="h3 mb-0 text-gray-800">Account Summary</h1>
     </div>
+  </div>
 </div>
