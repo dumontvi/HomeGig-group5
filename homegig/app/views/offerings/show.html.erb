@@ -1,21 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <title>Shop Item - Start Bootstrap Template</title>
-
-  <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
-  <link href="css/shop-item.css" rel="stylesheet">
-
-</head>
-
-<body>
-
-  <!-- Page Content -->
-  <div class="container">
+ <div class="container">
 
     <div class="row">
       <!-- /.col-lg-3 -->
@@ -30,6 +13,9 @@
             <p class="card-text"><%= @post.content %></p>
             <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
             4.0 stars
+            <div class="card-body">
+              <%= link_to "I'm interested on this gig", notify_interest_path(@post), method: :post, class: "btn btn-primary" %>
+            </div>
           </div>
         </div>
         <!-- /.card -->
@@ -66,11 +52,3 @@
 
   </div>
   <!-- /.container -->
-
-  <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-</body>
-
-</html>

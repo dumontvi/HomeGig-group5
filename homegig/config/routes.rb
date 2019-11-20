@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     post '/offerings/:id/create', to: 'reviews#create', as: 'createReview'
   end
 
+  post '/offerings/:id/notify_interest', to: 'notifications#notify_interest', as: 'notify_interest'
 
   get "stripe/connect", to: 'stripe#connect', as: :stripe_connect
   get 'stripe/register', to: 'stripe#register'
