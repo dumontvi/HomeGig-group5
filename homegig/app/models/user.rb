@@ -6,4 +6,5 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :gigs, dependent: :destroy
   has_many :reviews, dependent: :destroy
+  has_many :notifications, dependent: :destroy
 end

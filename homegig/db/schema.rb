@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_18_010108) do
+ActiveRecord::Schema.define(version: 2019_11_19_215451) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,17 @@ ActiveRecord::Schema.define(version: 2019_11_18_010108) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.bigint "from_user_id"
+    t.bigint "to_user_id"
+    t.text "description"
+    t.boolean "checked"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["from_user_id"], name: "index_notifications_on_from_user_id"
+    t.index ["to_user_id"], name: "index_notifications_on_to_user_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -63,8 +74,11 @@ ActiveRecord::Schema.define(version: 2019_11_18_010108) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "stripe_user_id"
+    t.bigint "notification_id"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["notification_id"], name: "index_users_on_notification_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "users", "notifications"
 end
