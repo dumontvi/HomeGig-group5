@@ -1,0 +1,11 @@
+<h3 align="center">New Offering Gig</h3>
+
+<%= form_with scope: :post, url: createOfferingGig_path, local: true do |form| %>
+    <p align="center">
+        <%= form.text_area :content, cols: "100", rows: "10"%>
+    </p>
+
+    <p align="center">
+        <%= form.submit "Post Review" %>
+    </p>
+<% end %>

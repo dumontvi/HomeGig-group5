@@ -10,12 +10,12 @@ class ReviewsController < ApplicationController
         @review = Review.new(review_params)
         @review.save
 
-        redirect_to '/offerings/' + params[:id]
+        redirect_to '/offerings/posts/' + params[:id]
     end
 
     private
     def review_params
-        params.require(:review).permit(:content).merge(user_id: 1, post_id: params[:id])
+        params.require(:review).permit(:content).merge(user_id: current_user.id, post_id: params[:id])
     end
 
     def create_notification

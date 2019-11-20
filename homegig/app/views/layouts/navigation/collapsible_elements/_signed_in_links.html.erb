@@ -1,3 +1,8 @@
+<li class="nav-item">
+    <%= render partial: 'layouts/navigation/collapsible_elements/nav_bar_link',
+                locals: {name: 'Create a Gig', path: newOfferingGig_path} %>
+</li>
+
 <%= render 'layouts/navigation/dropdown', 
     dropdown_class: 'pc-menu',
     dropdown_label: current_user.name, 
