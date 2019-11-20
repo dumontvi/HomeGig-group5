@@ -19,8 +19,9 @@ Rails.application.routes.draw do
   get 'terms_of_use', to: 'static_pages#terms_of_use'
   get 'contact', to: 'static_pages#contact'
 
-  get 'offerings', to: 'offerings#index'
+  get 'offerings', to: 'offerings#index', as: 'offeringAll'
   get '/offerings/:id', to: 'offerings#show', as: 'offering'
+  get '/offerings?category=:id', to: 'offerings#index', as: 'offeringCat'
 
   devise_scope :post do
     get '/offerings/:id/new', to: 'reviews#new', as: 'newReview'

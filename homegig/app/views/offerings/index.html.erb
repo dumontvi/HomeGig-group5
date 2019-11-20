@@ -29,8 +29,9 @@
         <h4 class="my-4">Categories</h4>
         <div class="list-group">
           <% @categories.each do |category| %>
-            <a href="#" class="list-group-item"><%= category.name %></a>
+            <%= link_to category.name, offeringCat_path(category), class:"list-group-item" %>
           <% end %>
+          <%= link_to 'View All', offeringAll_path, class:"list-group-item" %>
         </div>
 
       </div>
