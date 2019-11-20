@@ -1,4 +1,7 @@
 class ReviewsController < ApplicationController
+    before_action :authenticate_user!
+    after_action :create_notification, only: [:create]
+
     def new
         @review = Review.new
     end
@@ -13,5 +16,15 @@ class ReviewsController < ApplicationController
     private
     def review_params
         params.require(:review).permit(:content).merge(user_id: 1, post_id: params[:id])
+    end
+
+    def create_notification
+        post = Post.find(params[:id])
+        if post
+            Notification.create(from_user: current_user,
+                                to_user: post.user,
+                                description: "#{current_user.email} has left you a review",
+                                checked: false)
+        end
     end
 end
