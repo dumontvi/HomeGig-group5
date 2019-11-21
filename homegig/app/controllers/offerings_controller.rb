@@ -13,6 +13,7 @@ class OfferingsController < ApplicationController
 
     def new
         @newPost = Post.new
+        @categories = Category.all
     end
     
     def create
@@ -24,6 +25,6 @@ class OfferingsController < ApplicationController
 
     private
     def post_params
-        params.require(:post).permit(:content).merge(user_id: current_user.id, post_id: params[:id])
+        params.require(:post).permit(:title, :content, :price, :category_id).merge(user_id: current_user.id)
     end
 end
