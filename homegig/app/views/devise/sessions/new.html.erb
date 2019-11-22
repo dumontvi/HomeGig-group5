@@ -1,6 +1,9 @@
-<div class="container">
-  <div class="row">
-    <div class="col-sm-6 col-sm-offset-3">
+<div class="row">
+<div class="col-lg-6">
+  <!-- Sign-up form -->
+  <div id="sign-up-form">
+    <div class="row justify-content-center">
+    <div class="col-sm-6 col-sm-offset-3 col-lg-8 pt-4 pb-5 pl-5 pr-5 text-white shadow-lg login-box" id="sign_up_box">
       <h2 class="text-center">Log in</h2>
         <%= bootstrap_form_for(resource, 
                                as: resource_name, 
@@ -21,8 +24,120 @@
             <%= f.check_box :remember_me %>
             <% end -%>
 
-            <%= f.submit "Log in", class: 'form-control login-button' %>
+            <%= f.submit "Log in", class: 'form-control login-button sign-up-button' %>
         <% end %>      
     </div>
   </div> 
+  </div>
+  </div>
+  <div class="slideshow col-lg-6" id="login-slideshow">
+    <!-- Slideshow Items -->
+    <div class="slideshow-items pl-5" id="slideshow-containter">
+      <div class="item">
+        <div class="item-image-container" id="sign-up-img-container">
+          <img class="item-image" src="https://i.pinimg.com/564x/23/a4/86/23a4860b8b70b1eb27f2791b97aaee8e.jpg" />
+        </div>
+        <!-- Staggered Header Elements -->
+        <div class="item-header">
+          <span class="vertical-part"><b>H</b></span>
+          <span class="vertical-part"><b>O</b></span>
+          <span class="vertical-part"><b>M</b></span>
+          <span class="vertical-part"><b>E</b></span>
+          <span class="vertical-part"><b>G</b></span>
+          <span class="vertical-part"><b>I</b></span>
+          <span class="vertical-part"><b>G</b></span>
+        </div>
+      </div>
+      <!-- End -->
+    </div>
+  </div>
 </div>
+      </div>
+    </div>
+    <div class="controls">
+      <ul>
+        <li class="control" data-index="0"></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+
+<script>
+    const items = document.querySelectorAll('.item'),
+    controls = document.querySelectorAll('.control'),
+    headerItems = document.querySelectorAll('.item-header'),
+    descriptionItems = document.querySelectorAll('.item-description'),
+    activeDelay = .76,
+    interval = 5000;
+
+    let current = 0;
+
+    const slider = {
+    init: () => {
+        controls.forEach(control => control.addEventListener('click', (e) => { slider.clickedControl(e) }));
+        controls[current].classList.add('active');
+        items[current].classList.add('active');
+    },
+    nextSlide: () => { // Increment current slide and add active class
+        slider.reset();
+        if (current === items.length - 1) current = -1; // Check if current slide is last in array
+        current++;
+        controls[current].classList.add('active');
+        items[current].classList.add('active');
+        slider.transitionDelay(headerItems);
+        slider.transitionDelay(descriptionItems);
+    },
+    clickedControl: (e) => { // Add active class to clicked control and corresponding slide
+        slider.reset();
+        clearInterval(intervalF);
+
+        const control = e.target,
+        dataIndex = Number(control.dataset.index);
+
+        control.classList.add('active');
+        items.forEach((item, index) => { 
+        if (index === dataIndex) { // Add active class to corresponding slide
+            item.classList.add('active');
+        }
+        })
+        current = dataIndex; // Update current slide
+        slider.transitionDelay(headerItems);
+        slider.transitionDelay(descriptionItems);
+        intervalF = setInterval(slider.nextSlide, interval); // Fire that bad boi back up
+    },
+    reset: () => { // Remove active classes
+        items.forEach(item => item.classList.remove('active'));
+        controls.forEach(control => control.classList.remove('active'));
+    },
+    transitionDelay: (items) => { // Set incrementing css transition-delay for .item-header & .item-description, .vertical-part, b elements
+        let seconds;
+        
+        items.forEach(item => {
+        const children = item.childNodes; // .vertical-part(s)
+        let count = 1,
+            delay;
+        
+        item.classList.value === 'item-header' ? seconds = .015 : seconds = .007;
+
+        children.forEach(child => { // iterate through .vertical-part(s) and style b element
+            if (child.classList) {
+            item.parentNode.classList.contains('active') ? delay = count * seconds + activeDelay : delay = count * seconds;
+            child.firstElementChild.style.transitionDelay = `${delay}s`; // b element
+            count++;
+            }
+        })
+        })
+    },
+    }
+
+    let intervalF = setInterval(slider.nextSlide, interval);
+    slider.init();
+</script>

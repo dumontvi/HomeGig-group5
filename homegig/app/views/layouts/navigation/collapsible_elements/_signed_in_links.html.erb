@@ -1,12 +1,14 @@
-<li class="nav-item">
-    <%= render partial: 'layouts/navigation/collapsible_elements/nav_bar_link',
-                locals: {name: 'Create a Gig', path: newOfferingGig_path} %>
-</li>
+<% options = [{title: 'About Us', url: about_path},
+              {title: 'Offering Gigs', url: offeringAll_path},
+              {title: 'Seeking Gigs', url: offeringAll_path},
+              {title: 'Create a Gig', url: newOfferingGig_path}] %>
 
-<li class="nav-item">
-    <%= render partial: 'layouts/navigation/collapsible_elements/nav_bar_link',
-                locals: {name: 'About Us', path: newOfferingGig_path} %>
-</li>
+<% options.each do |option| %>
+    <li class="nav-item text-white">
+        <%= render partial: 'layouts/navigation/collapsible_elements/nav_bar_link',
+                    locals: {name: option[:title] , path: option[:url]} %>
+    </li>
+<%end%>
 
 <%= render 'layouts/navigation/dropdown', 
     dropdown_class: 'pc-menu',
