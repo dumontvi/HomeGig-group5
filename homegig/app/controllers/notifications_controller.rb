@@ -6,7 +6,7 @@ class NotificationsController < ApplicationController
         if post
             Notification.create(from_user: current_user,
                                 to_user: post.user,
-                                description: "#{current_user.email} is interested in your post",
+                                description: "#{current_user.email} is interested in your gig #{post.title}",
                                 checked: false)
         end
 
