@@ -1,4 +1,4 @@
-<li class="nav-item nav-bar-link <%= local_assigns.fetch(:nav_bar_link_class, '') %>">
+<li class="nav-item nav-bar-link pl-2 pr-2 <%= local_assigns.fetch(:nav_bar_link_class, '') %>">
     <%= render 'layouts/navigation/generic_link', 
-        name: name, path: path, method: local_assigns.fetch(:method, nil), class_name: "nav-link nav-bar-link" %>
+        name: name, path: path, method: local_assigns.fetch(:method, nil), class_name: "nav-link nav-bar-link text-white" %>
 </li>

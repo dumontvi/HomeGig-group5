@@ -1,8 +1,12 @@
-<li class="nav-item">
-    <%= render partial: 'layouts/navigation/collapsible_elements/nav_bar_link',
-                locals: {name: 'Login', path: login_path} %>
-</li>
-<li class="nav-item">
-    <%= render partial: 'layouts/navigation/collapsible_elements/nav_bar_link',
-                locals: {name: 'Sign Up', path: signup_path} %>
-</li>
+<% options = [{title: 'About Us', url: about_path},
+              {title: 'Offering Gigs', url: offeringAll_path},
+              {title: 'Seeking Gigs', url: offeringAll_path},
+              {title: 'Join us', url: signup_path},
+              {title: 'Login', url: login_path}] %>
+
+<% options.each do |option| %>
+    <li class="nav-item text-white">
+        <%= render partial: 'layouts/navigation/collapsible_elements/nav_bar_link',
+                    locals: {name: option[:title] , path: option[:url]} %>
+    </li>
+<%end%>
