@@ -14,10 +14,12 @@
         <% end %>
     </div>
 
-    <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center">
-        <h1 class="font-weight-normal">Register now. It's free!</h1>
-        <p class="lead font-weight-normal">Create an account to start connecting with other professionals.</p>
-        <%= render 'layouts/navigation/generic_link', name:'Register', path:signup_path, class_name:'btn btn-primary'%>
-    </div>
+    <% if not user_signed_in? %>
+        <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center">
+            <h1 class="font-weight-normal">Register now. It's free!</h1>
+            <p class="lead font-weight-normal">Create an account to start connecting with other professionals.</p>
+            <%= render 'layouts/navigation/generic_link', name:'Register', path:signup_path, class_name:'btn btn-primary'%>
+        </div>
+    <% end %>
 
 </div>
