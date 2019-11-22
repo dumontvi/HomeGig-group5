@@ -34,7 +34,7 @@ def seed_users
     post_id = 0
   
     categories.each do |category|
-      5.times do
+      1.times do
         Post.create(
           title: post_id, 
           content: "Hello World", 
@@ -45,18 +45,7 @@ def seed_users
       end
     end
   end
-  
-  def seed_reviews
-    reviewNo = 0
-    5.times do
-      Review.create(
-        content: "review Number #{reviewNo}",
-        
 
-        )
-        reviewNo = reviewNo + 1
-    end
-  end
   seed_users
   seed_categories
   seed_posts

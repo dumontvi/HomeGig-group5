@@ -19,14 +19,18 @@ Rails.application.routes.draw do
   get 'terms_of_use', to: 'static_pages#terms_of_use'
   get 'contact', to: 'static_pages#contact'
 
-  get 'offerings', to: 'offerings#index'
-  get '/offerings/:id', to: 'offerings#show', as: 'offering'
+  get 'offerings', to: 'offerings#index', as: 'offeringAll'
+  get '/offerings/posts/:id', to: 'offerings#show', as: 'offering'
+  get '/offerings?category=:id', to: 'offerings#index', as: 'offeringCat'
+  get '/offerings/new', to: 'offerings#new', as: 'newOfferingGig'
+  post '/offerings/create', to: 'offerings#create', as: 'createOfferingGig'
 
   devise_scope :post do
-    get '/offerings/:id/new', to: 'reviews#new', as: 'newReview'
-    post '/offerings/:id/create', to: 'reviews#create', as: 'createReview'
+    get '/offerings/posts/:id/new', to: 'reviews#new', as: 'newReview'
+    post '/offerings/posts/:id/create', to: 'reviews#create', as: 'createReview'
   end
 
+  post '/offerings/:id/notify_interest', to: 'notifications#notify_interest', as: 'notify_interest'
 
   get "stripe/connect", to: 'stripe#connect', as: :stripe_connect
   get 'stripe/register', to: 'stripe#register'
