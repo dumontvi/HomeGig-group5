@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   post '/offerings/:id/notify_interest', to: 'notifications#notify_interest', as: 'notify_interest'
 
   get 'notifications', to: 'notifications#notifications'
+  post 'notifications/acknowledge_all', to: 'notifications#acknowledge_all'
 
   get "stripe/connect", to: 'stripe#connect', as: :stripe_connect
   get 'stripe/register', to: 'stripe#register'

@@ -14,5 +14,10 @@ class NotificationsController < ApplicationController
                                 checked: false)
         end
     end
+
+    def acknowledge_all
+        Notification.update_all("checked = true")   
+        redirect_to notifications_path     
+    end
  
 end
