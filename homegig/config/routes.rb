@@ -32,6 +32,8 @@ Rails.application.routes.draw do
 
   post '/offerings/:id/notify_interest', to: 'notifications#notify_interest', as: 'notify_interest'
 
+  get 'notifications', to: 'notifications#notifications'
+
   get "stripe/connect", to: 'stripe#connect', as: :stripe_connect
   get 'stripe/register', to: 'stripe#register'
   get 'stripe/public_key', to: 'stripe#public_key'
