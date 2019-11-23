@@ -1,0 +1,53 @@
+<!-- Sidebar  -->
+<nav class="bg-dark" id="sidebar">
+    <div class="sidebar-header bg-dark border-bottom">
+        <div class="text-center">
+        <%= image_tag(current_user.profile_picture.url, alt: '..', size:'80x80', :class => "mr-3 rounded-circle img-thumbnail shawdow-sm profile-image") if current_user.profile_picture? %>
+        <h5 class="mt-0 pt-2"><%= "#{current_user.name}" %></h5>
+        </div>
+    </div>
+
+    <ul class="list-unstyled components bg-dark">
+        <li class="font-weight-normal pl-3 heading-profile">
+            Account
+        </li>
+        <li class="active">
+            <a href="/profile_management">
+                <i class="fas fa-home"></i>
+                Account Summary
+            </a>
+        </li>
+
+        <li class="font-weight-normal pl-3 pt-3 pb-2 heading-profile">
+            Notifications
+        </li>
+        <li class="active">
+            <a href="<%= notifications_path %>">
+                <i class="fas fa-bell"></i>
+                Notifications
+            </a>
+        </li>
+
+        <% options = [{title: 'Manage Gigs', url: manage_url(current_user), icon: "fas fa-briefcase"},
+                        {title: 'Gig Statistics', url: '', icon: "fa fa-home"}] %>
+        
+        <li class="font-weight-normal pl-3 pt-3 pb-2 heading-profile">
+            Gig Management
+        </li>
+        <% options.each do |option| %>
+            <li>
+            <a href="<%= option[:url] %>">
+                <i class="<%= option[:icon] %>"></i>
+                <%= "#{option[:title]}" %>
+            </a>
+            </li>
+        <% end %>  
+
+        <li class="pt-5">
+            <a href="/users/sign_out" data-method="delete">
+            <i class="fas fa-image"></i>
+            Log out
+            </a>
+        </li>
+    </ul>
+</nav>

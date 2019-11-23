@@ -1,82 +1,32 @@
-<script src="https://kit.fontawesome.com/8b41a163ea.js"></script>
-
 <div class="wrapper">
-        <!-- Sidebar  -->
-        <nav class="bg-dark" id="sidebar">
-            <div class="sidebar-header bg-dark border-bottom">
-              <div class="text-center">
-                <%= image_tag(current_user.profile_picture.url, alt: '..', size:'80x80', :class => "mr-3 rounded-circle img-thumbnail shawdow-sm profile-image") if current_user.profile_picture? %>
-                <h5 class="mt-0 pt-2"><%= "#{current_user.name}" %></h5>
-              </div>
-            </div>
 
-            <ul class="list-unstyled components bg-dark">
-                <li class="font-weight-normal pl-3 heading-profile">
-                  Account
-                </li>
-                <li class="active">
-                    <a href="/profile_management">
-                        <i class="fas fa-home"></i>
-                        Account Summary
-                    </a>
-                </li>
+  <%= render '/profiles/sidebar' %>
 
-                <% options = [{title: 'Manage Gigs', url: manage_url(current_user), icon: "fas fa-briefcase"},
-                              {title: 'Gig Statistics', url: '', icon: "fa fa-home"}] %>
-                
-                <li class="font-weight-normal pl-3 pt-3 pb-2 heading-profile">
-                  Gig Management
-                </li>
-                <% options.each do |option| %>
-                  <li>
-                    <a href="<%= option[:url] %>">
-                      <i class="<%= option[:icon] %>"></i>
-                        <%= "#{option[:title]}" %>
-                    </a>
-                  </li>
-                <% end %>  
+  <!-- Page Content  -->
+  <div id="content">
 
-                <li class="pt-5">
-                  <a href="/users/sign_out" data-method="delete">
-                    <i class="fas fa-image"></i>
-                    Log out
-                  </a>
-                </li>
-              </ul>
-            </nav>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom" id="account-heading">
+          <div class="container-fluid">
+            <h2>Account Summary</h2>  
+          </div>
+      </nav>
 
-        <!-- Page Content  -->
-        <div id="content">
-
-            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom" id="account-heading">
-                <div class="container-fluid">
-                  <h2>Account Summary</h2>  
-                </div>
-            </nav>
-
-            <div class="row justify-content-center mt-5 ml-5 ml-5 mr-5 bg-white shadow" id="form">
-              <div class="col-lg-7 mt-4 mb-2">
-                <%= bootstrap_form_for(current_user, :as => current_user, :url => profile_management_path(current_user)) do |f| %>
-                  <%= f.text_field :name, 
-                      placeholder: current_user.name, 
-                      class: 'form-control' %>
-                  <%= f.text_field :email,
-                      placeholder: current_user.email, 
-                      class: 'form-control' %>
-                  <%= image_tag(current_user.profile_picture.url, alt: '..', size:'80x80', :class => "mb-3 rounded-circle img-thumbnail shawdow-sm profile-image") if current_user.profile_picture? %>
-                  <%= f.file_field :profile_picture,
-                    class: 'form-control' %>
-                  <%= f.submit 'Update', 
-                      class: 'form-control sign-up-button mb-3' %>
-                <% end %>
-              </div>
-            </div>
+      <div class="row justify-content-center mt-5 ml-5 ml-5 mr-5 bg-white shadow" id="form">
+        <div class="col-lg-7 mt-4 mb-2">
+          <%= bootstrap_form_for(current_user, :as => current_user, :url => profile_management_path(current_user)) do |f| %>
+            <%= f.text_field :name, 
+                placeholder: current_user.name, 
+                class: 'form-control' %>
+            <%= f.text_field :email,
+                placeholder: current_user.email, 
+                class: 'form-control' %>
+            <%= image_tag(current_user.profile_picture.url, alt: '..', size:'80x80', :class => "mb-3 rounded-circle img-thumbnail shawdow-sm profile-image") if current_user.profile_picture? %>
+            <%= f.file_field :profile_picture,
+              class: 'form-control' %>
+            <%= f.submit 'Update', 
+                class: 'form-control sign-up-button mb-3' %>
+          <% end %>
         </div>
-    </div>
-
-    <!-- jQuery CDN - Slim version (=without AJAX) -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <!-- Popper.JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-    <!-- Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+      </div>
+  </div>
+</div>
