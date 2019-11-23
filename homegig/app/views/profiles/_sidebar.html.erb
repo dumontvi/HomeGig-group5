@@ -17,6 +17,12 @@
                 Account Summary
             </a>
         </li>
+        <li class="active">
+            <a href="<%= stripe_register_path %>">
+                <i class="fab fa-cc-stripe"></i>
+                Stripe
+            </a>
+        </li>
 
         <li class="font-weight-normal pl-3 pt-3 pb-2 heading-profile">
             Notifications
@@ -25,6 +31,12 @@
             <a href="<%= notifications_path %>">
                 <i class="fas fa-bell"></i>
                 Notifications
+
+                <!-- Using NotificationsHelper -->
+                <% badge_number = number_of_unread_notifications %>
+                <% if badge_number > 0 %>
+                    <span class="badge badge-light"><%= badge_number %></span>
+                <% end %>
             </a>
         </li>
 

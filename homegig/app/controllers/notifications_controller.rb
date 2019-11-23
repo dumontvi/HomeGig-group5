@@ -1,5 +1,6 @@
 class NotificationsController < ApplicationController
     before_action :authenticate_user!
+    helper_method :notifications
 
     def notifications
         @notifications = Notification.where(["to_user_id = ? and checked = false", "#{current_user.id}"]).order(created_at: :desc)
