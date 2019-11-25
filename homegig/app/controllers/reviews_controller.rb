@@ -21,9 +21,10 @@ class ReviewsController < ApplicationController
     def create_notification
         post = Post.find(params[:id])
         if post
+            description = "#{current_user.email} has left you a review on your gig #{post.title}"
             Notification.create(from_user: current_user,
                                 to_user: post.user,
-                                description: "#{current_user.email} has left you a review",
+                                description: description,
                                 checked: false)
         end
     end

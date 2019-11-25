@@ -1,0 +1,40 @@
+<div class="container">
+
+<div class="row">
+  <!-- /.col-lg-3 -->
+
+  <div class="col-lg-9">
+
+    <div class="card mt-4">
+      <img class="card-img-top img-fluid" src="http://placehold.it/900x400" alt="">
+      <div class="card-body">
+        <h3 class="card-title"><%= @post.title %></h3>
+        <h4><%= @post.price %></h4>
+        <p class="card-text"><%= @post.content %></p>
+        <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+        4.0 stars
+        <div class="card-body">
+          <%= link_to "I'm interested on this gig", notify_interest_path(@post), method: :post, class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+    <!-- /.card -->
+
+    <div class="card card-outline-secondary my-4">
+      <div class="card-header">
+        About <%= link_to @post.user.name, seeking_path(@post.user) %>
+      </div>
+      <div class="card-body">
+        <%= @post.user.about %>
+      </div>
+    </div>
+
+    <!-- /.card -->
+
+  </div>
+  <!-- /.col-lg-9 -->
+
+</div>
+
+</div>
+<!-- /.container -->

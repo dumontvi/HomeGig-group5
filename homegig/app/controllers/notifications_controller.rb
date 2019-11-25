@@ -1,5 +1,10 @@
 class NotificationsController < ApplicationController
     before_action :authenticate_user!
+    helper_method :notifications
+
+    def notifications
+        @notifications = Notification.where(["to_user_id = ? and checked = false", "#{current_user.id}"]).order(created_at: :desc)
+    end
 
     def notify_interest
         post = Post.find(params[:id])
@@ -9,7 +14,11 @@ class NotificationsController < ApplicationController
                                 description: "#{current_user.email} is interested in your gig #{post.title}",
                                 checked: false)
         end
+    end
 
+    def acknowledge_all
+        Notification.update_all("checked = true")   
+        redirect_to notifications_path     
     end
  
 end

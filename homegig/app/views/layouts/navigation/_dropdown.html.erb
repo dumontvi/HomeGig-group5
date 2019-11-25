@@ -1,4 +1,3 @@
-
 <li class="nav-item dropdown <%= local_assigns.fetch(:dropdown_class, '') %>">
     <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <%= "#{dropdown_label}" %>
@@ -10,14 +9,3 @@
     <% end %>
     </div>
 </li>
-
-<script>
-    var x = document.getElementById("navbarDropdown").getAttribute("aria-expanded"); 
-    if (x == "true") {
-    x = "false" 
-    }  
-    else {
-    x = "true"
-    }
-    document.getElementById("navbarDropdown").setAttribute("aria-expanded", x);
-</script>
