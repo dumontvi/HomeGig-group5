@@ -9,11 +9,9 @@
           <img class="card-img-top img-fluid" src="http://placehold.it/900x400" alt="">
           <div class="card-body">
             <h3 class="card-title"><%= @post.title %></h3>
-            <h4><%= @post.price %></h4>
+            <h4>$<%= @post.price %></h4>
             <p class="card-text"><%= @post.content %></p>
-            <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
-            4.0 stars
-            <div class="card-body">
+            <div class="card-body pl-0">
               <%= link_to "I'm interested on this gig", notify_interest_path(@post), method: :post, class: "btn btn-primary" %>
             </div>
           </div>
@@ -41,6 +39,15 @@
                 <hr>
             <% end %>
             <%= link_to "Leave a Review", newReview_path(@post), class: "btn btn-success" %>
+          </div>
+        </div>
+
+        <div class="card card-outline-secondary my-4">
+          <div class="card-header">
+            Accept the Gig
+          </div>
+          <div class="card-body">
+            <p>$<%= @post.price %></p>
           </div>
         </div>
         <!-- /.card -->

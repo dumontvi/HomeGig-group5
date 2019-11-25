@@ -38,6 +38,7 @@ def seed_users
         Post.create(
           title: post_id, 
           content: "Hello World", 
+          price: "10.00"
           user_id: rand(1..9), 
           category_id: category.id
         )

@@ -11,9 +11,7 @@
         <h3 class="card-title"><%= @post.title %></h3>
         <h4><%= @post.price %></h4>
         <p class="card-text"><%= @post.content %></p>
-        <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
-        4.0 stars
-        <div class="card-body">
+        <div class="card-body pl-0">
           <%= link_to "I'm interested on this gig", notify_interest_path(@post), method: :post, class: "btn btn-primary" %>
         </div>
       </div>
