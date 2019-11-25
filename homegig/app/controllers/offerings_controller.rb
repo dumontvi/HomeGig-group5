@@ -9,7 +9,7 @@ class OfferingsController < ApplicationController
     def show
         @post = Post.find(params[:id])
         @reviews = @post.reviews
-        @posts = Post.all.where("user_id":@post.user_id)
+        @posts = Post.all.where("user_id":@post.user_id).where.not("title":@post.title)
     end
 
     def new
