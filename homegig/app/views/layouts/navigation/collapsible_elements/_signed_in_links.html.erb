@@ -1,8 +1,6 @@
 <% options = [{title: 'About Us', url: about_path},
               {title: 'Offering Gigs', url: offeringAll_path},
-              {title: 'Seeking Gigs', url: seekingAll_path},
-              {title: 'Offer a Gig', url: newOfferingGig_path},
-              {title: 'Seek a Gig', url: newSeekingGig_path}] %>
+              {title: 'Seeking Gigs', url: seekingAll_path}] %>
 
 <% options.each do |option| %>
     <li class="nav-item text-white">
@@ -12,18 +10,13 @@
 <%end%>
 
 <%= render 'layouts/navigation/dropdown', 
+    dropdown_class: 'create-menu',
+    dropdown_label: 'Create a Gig', 
+    links: [{name:'Offer a Gig', path: newOfferingGig_path},
+            {name:'Seek a Gig', path:newSeekingGig_path}] %>
+
+<%= render 'layouts/navigation/dropdown', 
     dropdown_class: 'pc-menu',
     dropdown_label: current_user.name, 
     links: [{name:'Profile Setting', path: profile_management_path},
             {name:'Log Out', path:destroy_user_session_path, method: :delete}] %>
-
-<li class="nav-item mobile-menu">
-    <%= render 'layouts/navigation/collapsible_elements/nav_bar_link',
-        nav_bar_link_class: 'mobile-menu',
-        name: 'Edit Profile', path: edit_user_registration_path %>
-</li>
-<li class="nav-item mobile-menu">
-    <%= render 'layouts/navigation/collapsible_elements/nav_bar_link',
-        nav_bar_link_class: 'mobile-menu',
-        name: 'Log out', path: destroy_user_session_path, method: :delete %>
-</li>
