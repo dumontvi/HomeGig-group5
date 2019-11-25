@@ -46,7 +46,25 @@ def seed_users
     end
   end
 
+  def seed_sposts
+    categories = Category.all
+    post_id = 0
+  
+    categories.each do |category|
+      1.times do
+        Spost.create(
+          title: post_id, 
+          content: "Hello World", 
+          user_id: rand(1..9), 
+          category_id: category.id
+        )
+        post_id = post_id + 1
+      end
+    end
+  end
+
   seed_users
   seed_categories
   seed_posts
+  seed_sposts
 
