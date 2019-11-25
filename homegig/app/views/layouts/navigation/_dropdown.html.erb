@@ -1,0 +1,11 @@
+<li class="nav-item dropdown <%= local_assigns.fetch(:dropdown_class, '') %>">
+    <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <%= "#{dropdown_label}" %>
+    </a>
+    <div class="dropdown-menu dropdown-menu-right bg-dark" aria-labelledby="navbarDropdown">
+    <% links.each do |link| %>
+        <%= render 'layouts/navigation/generic_link', 
+            name: link[:name], path: link[:path], method: link.fetch(:method, nil), class_name: "dropdown-item bg-dark nav-bar-link" %>
+    <% end %>
+    </div>
+</li>

@@ -1,66 +1,157 @@
-<h3 align="center" class="createGig">New Offering Gig</h3>
+<div class="row">
+  <div class="slideshow col-lg-5">
+    <!-- Slideshow Items -->
+    <div class="slideshow-items pl-5" id="slideshow-containter">
+      <div class="item">
+        <div class="item-image-container" id="sign-up-img-container">
+          <img class="item-image" src="https://i.pinimg.com/564x/23/a4/86/23a4860b8b70b1eb27f2791b97aaee8e.jpg" />
+        </div>
+      </div>
+      <!-- End -->
+    </div>
+  </div>
+    <div class="controls">
+      <ul>
+        <li class="control" data-index="0"></li>
+      </ul>
+    </div>
 
-<%= form_with scope: :post, url: createOfferingGig_path, local: true do |form| %>
+  <!-- Create Form -->
+  <div class="col-lg-5 ml-5 shadow-lg mt-5" id="form-new"> 
+  <%= form_with scope: :post, url: createOfferingGig_path, local: true do |form| %>
 
-<div class="col-sm-6"  >
-  <div class="form-group">  
-    <label for="exampleFormControlInput1" class="createGig">Title</label>
-    <%= form.text_field :title, id:"title", class:"form-control" %>
-    <button type="button" onclick="showDesc()" id="firstNext" class="btn btn-primary" >Next</button>
+  <div class="row pr-3 pl-3 pt-3">
+    <div class="form-group">  
+      <label for="exampleFormControlInput1" class="createGig">Title</label>
+      <%= form.text_field :title, id:"title", class:"form-control" %>
+      <button type="button" onclick="showDesc()" id="firstNext" class="btn btn-primary mt-3" >Next</button>
+    </div>
+  </div>
+
+  <div class="row pr-3 pl-3">
+    <div class="form-group" id="postDescription">
+      <label for="exampleFormControlTextarea1" class="createGig">Description</label>
+      <%= form.text_area :content, cols: "100", rows: "10", id:"descriptionBox", class:"form-control" %>
+      <button type="button" onclick="showPrice()" id="secondNext" class="btn btn-primary mt-3"  >Next</button> 
+    </div>
+  </div>
+
+  <div class="row pr-3 pl-3">
+    <div class="form-group" id="priceDescription">
+      <label for="exampleFormControlInput1" class="createGig">Price</label>
+      <%= form.text_field :title, id:"price", class:"form-control" %>
+      <button type="button" onclick="showCategory()" id="thirdNext" class="btn btn-primary mt-3">Next</button>
+    </div>
+  </div>
+
+  <div class="row pr-3 pl-3" id="categoryDescription">
+    <div class="form-group">
+      <label for="exampleFormControlSelect1" class="createGig">Category</label><br/>
+      <%= form.select :category_id, options_from_collection_for_select(@categories, 'id','name'), class:"form-control" %>
+    </div>
+  </div>
+
+  <div class="row pr-3 pl-3">
+    <div class="form-group" id="addPicture">
+      <label for="exampleFormControlFile1" class="createGig">Gig Image</label>
+      <input type="file" class="form-control-file" id="exampleFormControlFile1">
+    </div>
+  </div>
+
+  <div class="row pr-3 pl-3 pb-3 justify-content-center">
+    <div class="form-group" align="center" id="postButton">
+      <%= form.submit "Post Gig", class:"btn btn-primary" %>
+    </div>
   </div>
 </div>
 
-<div class="col-sm-6">
-  <div class="form-group" id="postDescription">
-    <label for="exampleFormControlTextarea1" class="createGig">Description</label>
-    <%= form.text_area :content, cols: "100", rows: "10", id:"descriptionBox", class:"form-control" %>
-    <button type="button" onclick="showPrice()" id="secondNext" class="btn btn-primary"  >Next</button> 
-  </div>
+    <% end %>
 </div>
 
-<div class="col-sm-6">
-  <div class="form-group" id="priceDescription">
-    <label for="exampleFormControlInput1" class="createGig">Price</label>
-    <%= form.text_field :title, id:"price", class:"form-control" %>
-    <button type="button" onclick="showCategory()" id="thirdNext" class="btn btn-primary">Next</button>
-  </div>
-</div>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 
-<div class="col-sm-6" id="categoryDescription">
-  <div class="form-group">
-    <label for="exampleFormControlSelect1" class="createGig">Category</label><br/>
-    <%= form.select :category_id, options_from_collection_for_select(@categories, 'id','name'), class:"form-control" %>
-  </div>
-</div>
+<script type="text/javascript">
+    const items = document.querySelectorAll('.item'),
+    controls = document.querySelectorAll('.control'),
+    headerItems = document.querySelectorAll('.item-header'),
+    descriptionItems = document.querySelectorAll('.item-description'),
+    activeDelay = .76,
+    interval = 5000;
 
-<div class="col-sm-6">
-  <div class="form-group">
-    <label for="exampleFormControlFile1" class="createGig">Gig Image</label>
-    <input type="file" class="form-control-file" id="exampleFormControlFile1">
-  </div>
-</div>
+    let current = 0;
 
-<div class="col-sm-6">
-  <div class="form-group" align="center" id="postButton">
-    <%= form.submit "Post Gig", class:"btn btn-primary" %>
-  </div>
-</div>
+    const slider = {
+    init: () => {
+        controls.forEach(control => control.addEventListener('click', (e) => { slider.clickedControl(e) }));
+        controls[current].classList.add('active');
+        items[current].classList.add('active');
+    },
+    nextSlide: () => { // Increment current slide and add active class
+        slider.reset();
+        if (current === items.length - 1) current = -1; // Check if current slide is last in array
+        current++;
+        controls[current].classList.add('active');
+        items[current].classList.add('active');
+        slider.transitionDelay(headerItems);
+        slider.transitionDelay(descriptionItems);
+    },
+    clickedControl: (e) => { // Add active class to clicked control and corresponding slide
+        slider.reset();
+        clearInterval(intervalF);
 
-  <% end %>
+        const control = e.target,
+        dataIndex = Number(control.dataset.index);
 
-  <script>
+        control.classList.add('active');
+        items.forEach((item, index) => { 
+        if (index === dataIndex) { // Add active class to corresponding slide
+            item.classList.add('active');
+        }
+        })
+        current = dataIndex; // Update current slide
+        slider.transitionDelay(headerItems);
+        slider.transitionDelay(descriptionItems);
+        intervalF = setInterval(slider.nextSlide, interval); // Fire that bad boi back up
+    },
+    reset: () => { // Remove active classes
+        items.forEach(item => item.classList.remove('active'));
+        controls.forEach(control => control.classList.remove('active'));
+    },
+    transitionDelay: (items) => { // Set incrementing css transition-delay for .item-header & .item-description, .vertical-part, b elements
+        let seconds;
+        
+        items.forEach(item => {
+        const children = item.childNodes; // .vertical-part(s)
+        let count = 1,
+            delay;
+        
+        item.classList.value === 'item-header' ? seconds = .015 : seconds = .007;
 
-  function showDesc() {
-      var title = document.getElementById("title").value
-  
+        children.forEach(child => { // iterate through .vertical-part(s) and style b element
+            if (child.classList) {
+            item.parentNode.classList.contains('active') ? delay = count * seconds + activeDelay : delay = count * seconds;
+            child.firstElementChild.style.transitionDelay = `${delay}s`; // b element
+            count++;
+            }
+        })
+        })
+    },
+    }
+
+    let intervalF = setInterval(slider.nextSlide, interval);
+    slider.init();
+
+    function showDesc() {
       if(title.length == 0) {
           alert("Title Cannot Be Empty.")
       } else {
           var postDescription = document.getElementById("postDescription")
           var firstNext = document.getElementById("firstNext")
           firstNext.style.display = "none"
-          postDescription.style.display = "block"
+          $("#postDescription").fadeIn();
           document.getElementById("title").readOnly = true
+          
       }
   }
 
@@ -73,27 +164,26 @@
         var priceDescription = document.getElementById("priceDescription")
         var secondNext = document.getElementById("secondNext")
         secondNext.style.display = "none"
-        priceDescription.style.display = "block"
+        $("#priceDescription").fadeIn();
         document.getElementById("postDescription").readOnly = true
     }
-}
+  }
 
-function showCategory() {
-    var price = document.getElementById("price").value
+  function showCategory() {
+      var price = document.getElementById("price").value
 
-    if(price.length == 0) {
-        alert("Price Cannot Be Empty.")
-    } else {
-        var categoryDescription = document.getElementById("categoryDescription")
-        var thirdNext = document.getElementById("thirdNext")
-        var postButton = document.getElementById("postButton")
-        thirdNext.style.display = "none"
-        categoryDescription.style.display = "block"
-        postButton.style.display = "block"
-        document.getElementById("priceDescription").readOnly = true
-    }
-}
-  </script>
-
-
-
+      if(price.length == 0) {
+          alert("Price Cannot Be Empty.")
+      } else {
+          var categoryDescription = document.getElementById("categoryDescription")
+          var thirdNext = document.getElementById("thirdNext")
+          var postButton = document.getElementById("postButton")
+          var picButton = document.getElementById("addPicture")
+          thirdNext.style.display = "none"
+          $("#categoryDescription").fadeIn();
+          $("#postButton").fadeIn();
+          $("#addPicture").fadeIn();
+          document.getElementById("priceDescription").readOnly = true
+      }
+  }
+</script>

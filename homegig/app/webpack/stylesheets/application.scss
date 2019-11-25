@@ -229,6 +229,11 @@ body {
       border-radius: 15px;
   }
 
+  #form-new {
+    background: #2f3243;
+    border-radius: 15px; 
+  }
+
   .sign-up-button {
       color: white;
       background: #28a745;
@@ -295,8 +300,11 @@ body {
   #firstNext {
     display:block;
   } 
+  
+  #addPicture {
+    display:none;
+  } 
 
   .createGig {
     color: white;
   }
-
