@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="slideshow col-lg-5">
+<div class="slideshow col-lg-5">
     <!-- Slideshow Items -->
     <div class="slideshow-items pl-5" id="slideshow-containter">
       <div class="item">
@@ -10,15 +10,16 @@
       <!-- End -->
     </div>
   </div>
-    <div class="controls">
+    <div class="controls" id="controller">
       <ul>
         <li class="control" data-index="0"></li>
       </ul>
     </div>
 
   <!-- Create Form -->
-  <div class="col-lg-5 ml-5 shadow-lg mt-5" id="form-new"> 
-  <%= form_with scope: :post, url: createSeekingGig_path, local: true do |form| %>
+  <div class="col-lg-5 ml-5 mt-5"> 
+  <h2 align="center" class="pb-3 text-white"> Search for services today </h2>
+  <%= form_with scope: :post, url: createOfferingGig_path, local: true do |form| %>
 
   <div class="row pr-3 pl-3 pt-3">
     <div class="form-group">  
@@ -58,7 +59,7 @@
     </div>
   </div>
 
-  <div class="row pr-3 pl-3 pb-3 justify-content-center">
+  <div class="row pr-3 pl-3 pb-3 pt-3 justify-content-center">
     <div class="form-group" align="center" id="postButton">
       <%= form.submit "Post Gig", class:"btn btn-primary" %>
     </div>
@@ -67,6 +68,7 @@
 
     <% end %>
 </div>
+
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
