@@ -12,16 +12,20 @@ class OfferingsController < ApplicationController
     end
 
     def new
-        @newPost = Post.new
+        @newPost = current_user.posts.build
         @categories = Category.all
     end
     
     def create
-        @newPost = Post.new(post_params)
+        @newPost = current_user.posts.build(post_params)
         @newPost.save
 
         redirect_to '/offerings/'
     end
+
+    def manage
+        @gigs = current_user.posts
+      end
 
     private
     def post_params
