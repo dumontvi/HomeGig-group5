@@ -5,14 +5,14 @@
   <!-- Page Content  -->
   <div id="content">
 
-      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom" id="account-heading">
+      <nav class="navbar navbar-expand-lg border-bottom" id="account-heading">
           <div class="container-fluid">
-            <h2>Account Summary</h2>  
+            <h2 class="text-white">Account Summary</h2>  
           </div>
       </nav>
 
-      <div class="row justify-content-center mt-5 ml-5 ml-5 mr-5 bg-white shadow" id="form">
-        <div class="col-lg-7 mt-4 mb-2">
+      <div class="row justify-content-center mt-5 ml-5 ml-5 mr-5" id="form">
+        <div class="col-lg-5 mt-4 mb-2">
           <%= bootstrap_form_for(current_user, :as => current_user, :url => profile_management_path(current_user)) do |f| %>
             <%= f.text_field :name, 
                 placeholder: current_user.name, 

@@ -26,7 +26,6 @@ a:focus {
 
 .navbar {
     padding: 15px 10px;
-    background: #fff;
     border: none;
     border-radius: 0;
     margin-bottom: 40px;
@@ -65,10 +64,11 @@ span {
     max-width: 250px;
     color: #fff;
     transition: all 0.3s;
+    background:#21212a;
 }
 
 #sidebar .button{
-    background: #999999;
+    background: white;
 }
 
 

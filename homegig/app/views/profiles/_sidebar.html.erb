@@ -1,13 +1,13 @@
 <!-- Sidebar  -->
-<nav class="bg-dark" id="sidebar">
-    <div class="sidebar-header bg-dark border-bottom">
+<nav id="sidebar">
+    <div class="sidebar-header border-bottom">
         <div class="text-center">
         <%= image_tag(current_user.profile_picture.url, alt: '..', size:'80x80', :class => "mr-3 rounded-circle img-thumbnail shawdow-sm profile-image") if current_user.profile_picture? %>
         <h5 class="mt-0 pt-2"><%= "#{current_user.name}" %></h5>
         </div>
     </div>
 
-    <ul class="list-unstyled components bg-dark">
+    <ul class="list-unstyled components">
         <li class="font-weight-normal pl-3 heading-profile">
             Account
         </li>
