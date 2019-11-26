@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   devise_scope :user do
     get 'signup', to: 'devise/registrations#new'
     get 'profile_management', to: 'profiles#profile_management'
-    get 'manage', to: 'gigs#manage'
+    get 'manage', to: 'offerings#manage'
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
