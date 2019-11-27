@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_25_011411) do
+ActiveRecord::Schema.define(version: 2019_11_26_233203) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,12 @@ ActiveRecord::Schema.define(version: 2019_11_25_011411) do
     t.integer "user_id"
   end
 
+  create_table "notification_categories", force: :cascade do |t|
+    t.text "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "notifications", force: :cascade do |t|
     t.bigint "from_user_id"
     t.bigint "to_user_id"
@@ -37,7 +43,13 @@ ActiveRecord::Schema.define(version: 2019_11_25_011411) do
     t.boolean "checked"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "notification_category_id", null: false
+    t.bigint "post_id"
+    t.bigint "spost_id"
     t.index ["from_user_id"], name: "index_notifications_on_from_user_id"
+    t.index ["notification_category_id"], name: "index_notifications_on_notification_category_id"
+    t.index ["post_id"], name: "index_notifications_on_post_id"
+    t.index ["spost_id"], name: "index_notifications_on_spost_id"
     t.index ["to_user_id"], name: "index_notifications_on_to_user_id"
   end
 
@@ -83,7 +95,6 @@ ActiveRecord::Schema.define(version: 2019_11_25_011411) do
     t.datetime "remember_created_at"
     t.string "name", default: "", null: false
     t.text "about", default: "", null: false
-    t.string "profile_picture", default: "", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "stripe_user_id"
@@ -93,5 +104,8 @@ ActiveRecord::Schema.define(version: 2019_11_25_011411) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "notifications", "notification_categories"
+  add_foreign_key "notifications", "posts"
+  add_foreign_key "notifications", "sposts"
   add_foreign_key "users", "notifications"
 end
