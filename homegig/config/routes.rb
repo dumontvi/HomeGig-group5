@@ -30,7 +30,8 @@ Rails.application.routes.draw do
     post '/offerings/posts/:id/create', to: 'reviews#create', as: 'createReview'
   end
 
-  post '/offerings/:id/notify_interest', to: 'notifications#notify_interest', as: 'notify_interest'
+  post '/offerings/:id/notify_interest', to: 'notifications#notify_offering_interest', as: 'notify_offering_interest'
+  post '/seekings/:id/notify_interest', to: 'notifications#notify_seeking_interest', as: 'notify_seeking_interest'
 
   get 'seekings', to: 'seekings#index', as: 'seekingAll'
   get '/seekings?category=:id', to: 'seekings#index', as: 'seekingCat'

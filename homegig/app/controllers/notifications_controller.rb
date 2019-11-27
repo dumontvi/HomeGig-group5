@@ -6,12 +6,28 @@ class NotificationsController < ApplicationController
         @notifications = Notification.where(["to_user_id = ? and checked = false", "#{current_user.id}"]).order(created_at: :desc)
     end
 
-    def notify_interest
+    def notify_offering_interest
         post = Post.find(params[:id])
-        if post
+        category = NotificationCategory.find_by(name: 'Interest')
+        if post and category
             Notification.create(from_user: current_user,
                                 to_user: post.user,
                                 description: "#{current_user.email} is interested in your gig #{post.title}",
+                                post: post,
+                                notification_category: category,
+                                checked: false)
+        end
+    end
+
+    def notify_seeking_interest
+        spost = Spost.find(params[:id])
+        category = NotificationCategory.find_by(name: 'Interest')
+        if spost and category
+            Notification.create(from_user: current_user,
+                                to_user: spost.user,
+                                description: "#{current_user.email} is interested in your gig #{spost.title}",
+                                spost: spost,
+                                notification_category: category,
                                 checked: false)
         end
     end

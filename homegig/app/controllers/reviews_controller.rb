@@ -20,11 +20,14 @@ class ReviewsController < ApplicationController
 
     def create_notification
         post = Post.find(params[:id])
-        if post
+        category = NotificationCategory.find_by(name: 'Review')
+        if post and category
             description = "#{current_user.email} has left you a review on your gig #{post.title}"
             Notification.create(from_user: current_user,
                                 to_user: post.user,
                                 description: description,
+                                post: post,
+                                notification_category: category,
                                 checked: false)
         end
     end
