@@ -28,7 +28,14 @@
                         <div class="d-flex w-100 justify-content-between">
                             <small class="text-muted"><%= notification.created_at.strftime("%Y-%m-%d") %></small>
                         </div>
-                        <p> <%= notification.description %></p>
+                        <p><%= notification.description %></p>
+                        <% if notification.notification_category.name == 'Interest' and notification.post %>
+                            <%= link_to "Approve payment", approve_path(notification), method: :post, class: "btn btn-success" %>
+                        <% elsif notification.notification_category.name == 'Interest' and notification.spost %>
+                            <%= link_to "Pay", notifications_acknowledge_all_path, method: :post, class: "btn btn-success" %>
+                        <% elsif notification.notification_category.name == 'Approval' and notification.post %>
+                            <%= link_to "Pay", notifications_acknowledge_all_path, method: :post, class: "btn btn-success" %>
+                        <% end %>
                     </div>
                 <% end %>
             </ul>

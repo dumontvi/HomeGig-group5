@@ -41,6 +41,7 @@ Rails.application.routes.draw do
 
   get 'notifications', to: 'notifications#notifications'
   post 'notifications/acknowledge_all', to: 'notifications#acknowledge_all'
+  post 'notifications/:id/approve', to: 'notifications#approve', as: 'approve'
 
   get "stripe/connect", to: 'stripe#connect', as: :stripe_connect
   get 'stripe/register', to: 'stripe#register'

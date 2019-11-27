@@ -32,6 +32,23 @@ class NotificationsController < ApplicationController
         end
     end
 
+    def approve
+        notification = Notification.find(params[:id])
+        category = NotificationCategory.find_by(name: 'Approval')
+        if notification and category
+            # Mark current as read
+            notification.update(checked: true)
+
+            # Send approval for payment to person interested in gig
+            Notification.create(from_user: current_user,
+                                to_user: notification.from_user,
+                                description: "#{current_user.email} has approved your request for gig #{notification.post.title}",
+                                post: notification.post,
+                                notification_category: category,
+                                checked: false)
+        end
+    end
+
     def acknowledge_all
         Notification.update_all("checked = true")   
         redirect_to notifications_path     
