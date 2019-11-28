@@ -95,6 +95,7 @@ ActiveRecord::Schema.define(version: 2019_11_26_233203) do
     t.datetime "remember_created_at"
     t.string "name", default: "", null: false
     t.text "about", default: "", null: false
+    t.string "profile_picture", default: "", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "stripe_user_id"
