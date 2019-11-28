@@ -64,8 +64,6 @@ def seed_users
     end
   end
 
-  seed_users
+
   seed_categories
-  seed_posts
-  seed_sposts
 
