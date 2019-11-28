@@ -48,5 +48,6 @@ Rails.application.routes.draw do
   get 'stripe/public_key', to: 'stripe#public_key'
   get 'stripe/checkout_session/:notificationId', to: 'stripe#checkout_session'
   get 'stripe/success', to: 'stripe#success'  
+  get 'stripe/error', to: 'stripe#error' 
 
 end

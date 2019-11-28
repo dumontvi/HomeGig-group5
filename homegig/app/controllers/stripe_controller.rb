@@ -4,6 +4,9 @@ class StripeController < ApplicationController
   def register
   end
 
+  def error
+  end
+
   def connect
     response = HTTParty.post("https://connect.stripe.com/oauth/token",
       query: {
@@ -68,7 +71,7 @@ class StripeController < ApplicationController
         },
       },
       success_url: "http://localhost:3000/stripe/success?session_id={CHECKOUT_SESSION_ID}&notification_id=#{notification.id}",
-      cancel_url: 'http://localhost:3000/about',
+      cancel_url: 'http://localhost:3000/stripe/error',
     })
   end
 
