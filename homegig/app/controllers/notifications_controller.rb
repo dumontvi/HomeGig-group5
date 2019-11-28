@@ -9,7 +9,7 @@ class NotificationsController < ApplicationController
     def notify_offering_interest
         post = Post.find(params[:id])
         category = NotificationCategory.find_by(name: 'Interest')
-        if post and category
+        if post and category and post.user.id != current_user.id
             Notification.create(from_user: current_user,
                                 to_user: post.user,
                                 description: "#{current_user.email} is interested in your gig #{post.title}",
@@ -22,7 +22,7 @@ class NotificationsController < ApplicationController
     def notify_seeking_interest
         spost = Spost.find(params[:id])
         category = NotificationCategory.find_by(name: 'Interest')
-        if spost and category
+        if spost and category and spost.user.id != current_user.id
             Notification.create(from_user: current_user,
                                 to_user: spost.user,
                                 description: "#{current_user.email} is interested in your gig #{spost.title}",
@@ -47,6 +47,7 @@ class NotificationsController < ApplicationController
                                 notification_category: category,
                                 checked: false)
         end
+        redirect_to notifications_path 
     end
 
     def acknowledge_all

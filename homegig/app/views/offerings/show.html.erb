@@ -11,9 +11,11 @@
             <h3 class="card-title"><%= @post.title %></h3>
             <h4>$<%= @post.price %></h4>
             <p class="card-text"><%= @post.content %></p>
-            <div class="card-body pl-0">
-              <%= link_to "I'm interested on this gig", notify_offering_interest_path(@post), method: :post, class: "btn btn-primary" %>
-            </div>
+            <% if current_user.id != @post.user.id %>
+              <div class="card-body pl-0">
+                <%= link_to "I'm interested on this gig", notify_offering_interest_path(@post), method: :post, class: "btn btn-primary" %>
+              </div>
+            <% end %>   
           </div>
         </div>
         <!-- /.card -->
