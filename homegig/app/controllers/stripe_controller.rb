@@ -70,8 +70,8 @@ class StripeController < ApplicationController
           destination: notification.from_user.stripe_user_id,
         },
       },
-      success_url: "http://localhost:3000/stripe/success?session_id={CHECKOUT_SESSION_ID}&notification_id=#{notification.id}",
-      cancel_url: 'http://localhost:3000/stripe/error',
+      success_url: "#{stripe_success_url}?session_id={CHECKOUT_SESSION_ID}&notification_id=#{notification.id}",
+      cancel_url: "#{stripe_error_url}",
     })
   end
 
