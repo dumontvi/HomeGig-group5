@@ -50,7 +50,10 @@ class NotificationsController < ApplicationController
     end
 
     def acknowledge_all
-        Notification.update_all("checked = true")   
+        notifications = Notification.where(to_user: current_user)   
+        if notifications
+            notifications.update(checked: true)
+        end
         redirect_to notifications_path     
     end
  
