@@ -15,7 +15,8 @@
         <% if current_user.stripe_user_id %>
           <p>You have registered to Stripe<p>
         <% else %>
-          <%= link_to 'Register to Stripe', stripe_button_link %>
+          <p> If you want to receive payments, you need to register to Stripe.</p>
+          <%= link_to 'Register', stripe_button_link, class: "btn btn-success" %>
         <% end %>
       </div>
   </div>
