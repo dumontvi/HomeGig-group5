@@ -141,7 +141,7 @@ body {
   }
   
   .item.active .item-image-container::before {
-    opacity: .8;
+    opacity: .5;
   }
   
   .item-description {
@@ -149,7 +149,7 @@ body {
     top: 182px;
     right: 0;
     width: 50%;
-    padding-right: 4%;
+    padding-right: 0%;
     line-height: 1.8;
   }
   
@@ -330,3 +330,15 @@ body {
   .card-block {
     min-height: 50px;
 }
+
+    #row-home {
+        font-family: 'Montserrat', sans-serif;
+        color: white;
+        font-weight: 400;
+    }
+
+    #home-width {
+        min-height:100%;
+        background:linear-gradient(0deg,rgba(0,0,0, 0.7),rgba(0,0,0,0.7)), url("https://images.pexels.com/photos/218863/pexels-photo-218863.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+        background-size:cover;
+    }
