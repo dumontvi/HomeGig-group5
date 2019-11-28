@@ -1,5 +1,10 @@
-<li class="nav-item dropdown pr-2 pl-2 <%= local_assigns.fetch(:dropdown_class, '') %>">
+<% dropdown_class = local_assigns.fetch(:dropdown_class, '') %>
+<li class="nav-item dropdown pr-2 pl-2 <%= dropdown_class %>">
     <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <% badge_number = number_of_unread_notifications %>
+        <% if badge_number > 0 and dropdown_class == 'profile-menu' %>
+            <span class="badge badge-light"><%= badge_number %></span>
+        <% end %>
         <%= "#{dropdown_label}" %>
     </a>
     <div class="dropdown-menu dropdown-menu-right bg-dark" aria-labelledby="navbarDropdown">

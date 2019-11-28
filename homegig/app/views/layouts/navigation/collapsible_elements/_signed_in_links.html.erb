@@ -16,7 +16,7 @@
             {name:'Seek a Gig', path:newSeekingGig_path}] %>
 
 <%= render 'layouts/navigation/dropdown', 
-    dropdown_class: 'pc-menu',
+    dropdown_class: 'profile-menu',
     dropdown_label: current_user.name, 
     links: [{name:'Profile Setting', path: profile_management_path},
             {name:'Log Out', path:destroy_user_session_path, method: :delete}] %>
