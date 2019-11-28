@@ -4,9 +4,6 @@ class StripeController < ApplicationController
   def register
   end
 
-  def pay
-  end
-
   def connect
     response = HTTParty.post("https://connect.stripe.com/oauth/token",
       query: {
@@ -32,50 +29,72 @@ class StripeController < ApplicationController
     render json: {public_key: Rails.configuration.stripe[:publishable_key]}
   end
 
-  def create_checkout_session
-    session = Stripe::Checkout::Session.create({
-      customer_email: current_user.email,
-      payment_method_types: ['card'],
-      line_items: [{
-        name: "Cucumber from Roger's Farm",
-        amount: 200,
-        currency: 'cad',
-        quantity: 10,
-      }],
-      payment_intent_data: {
-        application_fee_amount: 2,
-        transfer_data: {
-          destination: 'acct_1FfgnaG0y6BjsyVD',
-        },
-      },
-      success_url: 'http://localhost:3000/stripe/success?session_id={CHECKOUT_SESSION_ID}',
-      cancel_url: 'http://localhost:3000/about',
-    })
-    render json: session
-  end
-
   def success
     session = Stripe::Checkout::Session.retrieve(params[:session_id])
     payment_intent = Stripe::PaymentIntent.retrieve(session['payment_intent'])
     create_payment_notification(session, payment_intent)
+    hide_current_user_payment_notification(params[:notification_id])
   end
 
+  def checkout_session
+    notification = Notification.find(params[:notificationId])
+    if notification 
+      if notification.post
+        post = Post.find(notification.post.id)
+      else
+        post = Spost.find(notification.spost.id)
+      end
+      session = create_checkout_session(post, notification)
+      render json: session
+    end  
+  end
 
   private
 
-  def create_payment_notification(session, payment_intent)
-      post_name = session['display_items'][0]['custom']['name']
-      amount = payment_intent['amount']
-      fee = payment_intent['application_fee_amount']
-      destination = payment_intent['transfer_data']['destination']
-      discounted_amount = amount/100.0 - fee/100.0
-
-      users = User.where(["stripe_user_id = ?", destination])
-      if users.size == 1
-        Notification.create(from_user: current_user,
-                            to_user: users[0],
-                            description: "#{current_user.email} has deposited you #{discounted_amount} CAD for your gig #{post_name}",
-                            checked: false)
-      end
+  def create_checkout_session(post, notification)
+    session = Stripe::Checkout::Session.create({
+      customer_email: current_user.email,
+      payment_method_types: ['card'],
+      line_items: [{
+        name: post.title,
+        amount: (post.price * 100).round,
+        currency: 'cad',
+        quantity: 1,
+      }],
+      payment_intent_data: {
+        application_fee_amount: 5,
+        transfer_data: {
+          destination: notification.from_user.stripe_user_id,
+        },
+      },
+      success_url: "http://localhost:3000/stripe/success?session_id={CHECKOUT_SESSION_ID}&notification_id=#{notification.id}",
+      cancel_url: 'http://localhost:3000/about',
+    })
   end
+
+  def create_payment_notification(session, payment_intent)
+    post_name = session['display_items'][0]['custom']['name']
+    amount = payment_intent['amount']
+    fee = payment_intent['application_fee_amount']
+    destination = payment_intent['transfer_data']['destination']
+    discounted_amount = amount/100.0 - fee/100.0
+
+    user = User.find_by(stripe_user_id: destination)
+    category = NotificationCategory.find_by(name: 'Payment')
+    if user and category
+      Notification.create(from_user: current_user,
+                          to_user: user,
+                          description: "#{current_user.email} has deposited you #{discounted_amount} CAD for your gig #{post_name}",
+                          notification_category: category,
+                          checked: false)
+    end
+  end
+
+  def hide_current_user_payment_notification(notificationId)
+    notification = Notification.find(notificationId)
+    if notification
+      notification.update(checked: true)
+    end
+  end
+
 end

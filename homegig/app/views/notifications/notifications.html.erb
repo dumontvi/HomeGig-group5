@@ -31,10 +31,8 @@
                         <p><%= notification.description %></p>
                         <% if notification.notification_category.name == 'Interest' and notification.post %>
                             <%= link_to "Approve payment", approve_path(notification), method: :post, class: "btn btn-success" %>
-                        <% elsif notification.notification_category.name == 'Interest' and notification.spost %>
-                            <%= link_to "Pay", notifications_acknowledge_all_path, method: :post, class: "btn btn-success" %>
-                        <% elsif notification.notification_category.name == 'Approval' and notification.post %>
-                            <%= link_to "Pay", notifications_acknowledge_all_path, method: :post, class: "btn btn-success" %>
+                        <% elsif (notification.notification_category.name == 'Interest' and notification.spost) or (notification.notification_category.name == 'Approval' and notification.post) %>
+                            <button class="btn btn-success" onclick="setUpPayment(<%= notification.id %>)">Pay</button>                           
                         <% end %>
                     </div>
                 <% end %>
@@ -43,3 +41,36 @@
         <% end %>
     </div>
 </div>
+
+<script>
+    /* Handle any errors returns from Checkout  */
+    var handleResult = function(result) {
+        if (result.error) {
+            var displayError = document.getElementById("error-message");
+            displayError.textContent = result.error.message;
+        }
+    };
+
+    var getStripePublicKey = async function() {
+        const result = await fetch("/stripe/public_key")
+        return result.json();
+    };
+
+    var getCheckoutSession = async function(notificationId) {
+        const result = await fetch("/stripe/checkout_session/" + notificationId);
+        return result.json();
+    };
+
+    function setUpPayment(notificationId) {
+        getStripePublicKey()
+        .then(function(json) {
+            window.config = json;
+            var stripe = Stripe(config.public_key);
+            getCheckoutSession(notificationId)
+            .then(function(session) {
+                stripe.redirectToCheckout({sessionId: session.id})
+                .then(handleResult);
+            });
+        });
+    }
+</script>

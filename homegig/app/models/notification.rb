@@ -5,7 +5,7 @@ class Notification < ApplicationRecord
     belongs_to :post, optional: true
     belongs_to :spost, optional: true
 
-    after_save :send_email_notification
+    after_create :send_email_notification
 
     private
     def send_email_notification

@@ -46,8 +46,7 @@ Rails.application.routes.draw do
   get "stripe/connect", to: 'stripe#connect', as: :stripe_connect
   get 'stripe/register', to: 'stripe#register'
   get 'stripe/public_key', to: 'stripe#public_key'
-  get 'stripe/create_checkout_session', to: 'stripe#create_checkout_session'
-  get 'stripe/success', to: 'stripe#success'
-  get 'pay', to: 'stripe#pay'  
+  get 'stripe/checkout_session/:notificationId', to: 'stripe#checkout_session'
+  get 'stripe/success', to: 'stripe#success'  
 
 end
