@@ -11,8 +11,10 @@
         </nav>
 
         <!-- TODO: SHOW PRETTY -->
-        <% if flash[:notice] %>
-            <div class="notice"><%= flash[:notice] %></div>
+        <% if flash[:approve_success] %>
+            <div class="notice"><%= flash[:approve_success] %></div>
+        <% elsif flash[:approve_error] %>
+            <div class="notice"><%= flash[:approve_error] %></div>
         <% end %>
 
         <% if @notifications.size == 0 %>

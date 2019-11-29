@@ -30,9 +30,10 @@ class NotificationsController < ApplicationController
                                     spost: spost,
                                     notification_category: category,
                                     checked: false)
-                flash[:notice] = "You have sent a request to the gig's owner"
+                flash[:interest_success] = "You have sent a request to the gig's owner"
+                redirect_to seeking_path(spost)
             else
-                flash[:notice] = "You need to register to Stripe in order to receive payments"
+                flash[:interest_error] = "You need to register to Stripe in order to receive payments"
                 redirect_to seeking_path(spost)
             end
         end
@@ -53,9 +54,9 @@ class NotificationsController < ApplicationController
                                     post: notification.post,
                                     notification_category: category,
                                     checked: false)
-                flash[:notice] = "You have approved payment for this gig"
+                flash[:approve_success] = "You have approved payment for this gig"
             else
-                flash[:notice] = "You need to register to Stripe in order to receive payments"
+                flash[:approve_error] = "You need to register to Stripe in order to receive payments"
             end
         end
         redirect_to notifications_path 

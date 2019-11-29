@@ -1,8 +1,10 @@
 <div class="container">
 
 <!-- TODO: SHOW PRETTY -->
-<% if flash[:notice] %>
-  <div class="notice"><%= flash[:notice] %></div>
+<% if flash[:interest_success]%>
+  <div class="notice"><%= flash[:interest_success] %></div>
+<% elsif flash[:interest_error]%>
+  <div class="notice"><%= flash[:interest_error] %></div>
 <% end %>
 
 <div class="row">
