@@ -76,10 +76,10 @@ body {
     width: 100%;
     height: 100vh;
     background: #22222A;
-    font-family: 'Fira Mono', monospace;
+    font-family: 'Montserrat', sans-serif;
     -webkit-font-smoothing: antialiased;
     font-size: .88rem;
-    color: #bdbdd5;
+    color: white;
   }
   
   .content-width {
@@ -341,4 +341,45 @@ body {
         min-height:100%;
         background:linear-gradient(0deg,rgba(0,0,0, 0.7),rgba(0,0,0,0.7)), url("https://images.pexels.com/photos/218863/pexels-photo-218863.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
         background-size:cover;
+    }
+
+    #about-us-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    #about-masthead {
+        width: 100%;
+        height: 50%;
+        margin: 0;
+        background: linear-gradient(0deg,rgba(0,0,0, 0.7),rgba(0,0,0,0.7)), url("https://images.pexels.com/photos/583846/pexels-photo-583846.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+    }
+
+    #about-us-content {
+        position: relative;
+        height: 100%;
+    }
+
+    #privacy-policy-masthead {
+        width: 100%;
+        height: 30%;
+        margin: 0;
+        background: linear-gradient(0deg,rgba(0,0,0, 0.7),rgba(0,0,0,0.7)), url("https://images.pexels.com/photos/160107/pexels-photo-160107.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+    }
+
+    #tos-masthead {
+        width: 100%;
+        height: 30%;
+        margin: 0;
+        background: linear-gradient(0deg,rgba(0,0,0, 0.7),rgba(0,0,0,0.7)), url("https://images.pexels.com/photos/326311/pexels-photo-326311.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+    }
+
+    #faq-masthead {
+        width: 100%;
+        height: 30%;
+        margin: 0;
+        background: linear-gradient(0deg,rgba(0,0,0, 0.7),rgba(0,0,0,0.7)), url("https://images.pexels.com/photos/303383/pexels-photo-303383.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
     }

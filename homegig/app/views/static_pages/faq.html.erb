@@ -1,3 +1,34 @@
-<div class="content">
-    <h1> FAQ </h1>
+<div class="about-us overflow-auto" id="about-us-container">
+    <div class="row" id="faq-masthead">
+        <div class="span6" style="float: none; margin: auto;">
+            <h1 class="font-weight-bold">FAQs</h1>
+        </div>
+    </div>
+    <div class="row bg-light justify-content-center" id="about-us-content">
+        <div class="col-lg-8 mt-5 mb-5 text-dark">
+            <h4><strong>What is the HomeGig?</strong></h4><br>
+            <p> 
+                HomeGig offers users the ability to seek services of any sort or offer up services of their own.<br>
+                You can read more about us in the <%= link_to "About Us", about_path, {:style=>'color:#4285f4;'} %> section
+            </p><br>
+            <h4><strong>How can I find a service on HomeGig?</strong></h4><br>
+            <p> 
+                In order to find new gigs(services) on HomeGig, you must first be registered as a user.<br>
+                You can do this by going to <%= link_to "Join Us", signup_path, {:style=>'color:#4285f4;'} %>
+            </p><br>
+            <h4><strong>What kind of services does HomeGig offer?</strong></h4><br>
+            <p> 
+                We gives users the ability to offer their services and seek out services.<br>
+                You can look for various services under the <%= link_to "Offering Gigs", offeringAll_path, {:style=>'color:#4285f4;'} %> section.<br>
+                Otherwise, if you can't find the service you are looking for, you can put up an ad under the <%= link_to "Seeking Gigs", seekingAll_path, {:style=>'color:#4285f4;'} %> section.<br>
+            </p><br>
+            <h4><strong>What is our cancellation policy for a service you bought?</strong></h4><br>
+            <p> 
+                Please contact us within 2 days of buying the service. For cancellation requests sent in after 2 days, the payment is non-refundadable<br>
+                You can contact us throught the <%= link_to "Contact Us", contact_path, {:style=>'color:#4285f4;'} %> page or through any of our social media options.
+            </p><br> 
+        </div>
+    </div>
 </div>
+
+
