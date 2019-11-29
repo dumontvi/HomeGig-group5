@@ -21,23 +21,21 @@ Rails.application.routes.draw do
 
   get 'offerings', to: 'offerings#index', as: 'offeringAll'
   get '/offerings/posts/:id', to: 'offerings#show', as: 'offering'
-  get '/offerings?category=:id', to: 'offerings#index', as: 'offeringCat'
+  get '/offerings?categoryId=:categoryId', to: 'offerings#index', as: 'offeringCat'
   get '/offerings/new', to: 'offerings#new', as: 'newOfferingGig'
   post '/offerings/create', to: 'offerings#create', as: 'createOfferingGig'
-
+  post '/offerings/:id/notify_interest', to: 'notifications#notify_offering_interest', as: 'notify_offering_interest'
   devise_scope :post do
     get '/offerings/posts/:id/new', to: 'reviews#new', as: 'newReview'
     post '/offerings/posts/:id/create', to: 'reviews#create', as: 'createReview'
   end
-
-  post '/offerings/:id/notify_interest', to: 'notifications#notify_offering_interest', as: 'notify_offering_interest'
-  post '/seekings/:id/notify_interest', to: 'notifications#notify_seeking_interest', as: 'notify_seeking_interest'
 
   get 'seekings', to: 'seekings#index', as: 'seekingAll'
   get '/seekings?category=:id', to: 'seekings#index', as: 'seekingCat'
   get '/seeking/posts/:id', to: 'seekings#show', as: 'seeking'
   get '/seekings/new', to: 'seekings#new', as: 'newSeekingGig'
   post '/seekings/create', to: 'seekings#create', as: 'createSeekingGig'
+  post '/seekings/:id/notify_interest', to: 'notifications#notify_seeking_interest', as: 'notify_seeking_interest'
 
   get 'notifications', to: 'notifications#notifications'
   post 'notifications/acknowledge_all', to: 'notifications#acknowledge_all'

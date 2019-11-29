@@ -1,9 +1,18 @@
 class OfferingsController < ApplicationController
 
     def index
+        if params[:name].blank? 
+            @posts = Post.all
+            @posts = @posts.category(params[:categoryId]) if params[:categoryId].present?
+        else  
+            if params[:categoryId].present?
+                @posts = Post.where(["LOWER(title) LIKE ? AND category_id = ?", "%#{params[:name].downcase}%", params[:categoryId]])   
+            else
+                @posts = Post.where(["LOWER(title) LIKE ?", "%#{params[:name].downcase}%"])
+            end
+        end 
+        @current_category_id = params[:categoryId] if params[:categoryId].present?
         @categories = Category.all
-        @posts = Post.all
-        @posts = @posts.category(params[:category]) if params[:category].present?
     end
 
     def show
