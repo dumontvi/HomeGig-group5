@@ -1,9 +1,18 @@
 class SeekingsController < ApplicationController
 
     def index
+        if params[:name].blank? 
+            @posts = Spost.all
+            @posts = @posts.category(params[:categoryId]) if params[:categoryId].present?
+        else  
+            if params[:categoryId].present?
+                @posts = Spost.where(["LOWER(title) LIKE ? AND category_id = ?", "%#{params[:name].downcase}%", params[:categoryId]])   
+            else
+                @posts = Spost.where(["LOWER(title) LIKE ?", "%#{params[:name].downcase}%"])
+            end
+        end 
+        @current_category_id = params[:categoryId] if params[:categoryId].present?
         @categories = Category.all
-        @posts = Spost.all
-        @posts = @posts.category(params[:category]) if params[:category].present?
     end
 
     def show
@@ -20,6 +29,10 @@ class SeekingsController < ApplicationController
         @newPost.save
 
         redirect_to '/seekings/'
+    end
+
+    def get_seekings_by_name
+        render index
     end
 
     private
