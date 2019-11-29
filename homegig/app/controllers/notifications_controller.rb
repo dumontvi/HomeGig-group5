@@ -23,12 +23,18 @@ class NotificationsController < ApplicationController
         spost = Spost.find(params[:id])
         category = NotificationCategory.find_by(name: 'Interest')
         if spost and category and spost.user.id != current_user.id
-            Notification.create(from_user: current_user,
-                                to_user: spost.user,
-                                description: "#{current_user.email} is interested in your gig #{spost.title}",
-                                spost: spost,
-                                notification_category: category,
-                                checked: false)
+            if current_user.stripe_user_id
+                Notification.create(from_user: current_user,
+                                    to_user: spost.user,
+                                    description: "#{current_user.email} is interested in your gig #{spost.title}",
+                                    spost: spost,
+                                    notification_category: category,
+                                    checked: false)
+                flash[:notice] = "You have sent a request to the gig's owner"
+            else
+                flash[:notice] = "You need to register to Stripe in order to receive payments"
+                redirect_to seeking_path(spost)
+            end
         end
     end
 
@@ -36,16 +42,21 @@ class NotificationsController < ApplicationController
         notification = Notification.find(params[:id])
         category = NotificationCategory.find_by(name: 'Approval')
         if notification and category
-            # Mark current as read
-            notification.update(checked: true)
+            if current_user.stripe_user_id
+                # Mark current as read
+                notification.update(checked: true)
 
-            # Send approval for payment to person interested in gig
-            Notification.create(from_user: current_user,
-                                to_user: notification.from_user,
-                                description: "#{current_user.email} has approved your request for gig #{notification.post.title}",
-                                post: notification.post,
-                                notification_category: category,
-                                checked: false)
+                # Send approval for payment to person interested in gig
+                Notification.create(from_user: current_user,
+                                    to_user: notification.from_user,
+                                    description: "#{current_user.email} has approved your request for gig #{notification.post.title}",
+                                    post: notification.post,
+                                    notification_category: category,
+                                    checked: false)
+                flash[:notice] = "You have approved payment for this gig"
+            else
+                flash[:notice] = "You need to register to Stripe in order to receive payments"
+            end
         end
         redirect_to notifications_path 
     end

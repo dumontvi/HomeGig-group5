@@ -1,5 +1,10 @@
 <div class="container">
 
+<!-- TODO: SHOW PRETTY -->
+<% if flash[:notice] %>
+  <div class="notice"><%= flash[:notice] %></div>
+<% end %>
+
 <div class="row">
   <!-- /.col-lg-3 -->
 
@@ -13,7 +18,7 @@
         <p class="card-text"><%= @post.content %></p>
         <% if current_user.id != @post.user.id %>
           <div class="card-body pl-0">
-            <%= link_to "I'm interested on this gig", notify_seeking_interest_path(@post), method: :post, class: "btn btn-primary" %>     
+            <%= link_to "I'm interested on this gig", notify_seeking_interest_path(@post), method: :post, class: "btn btn-success" %>     
           </div>
         <% end %>   
       </div>
