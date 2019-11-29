@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   end
 
   get 'seekings', to: 'seekings#index', as: 'seekingAll'
-  get '/seekings?category=:id', to: 'seekings#index', as: 'seekingCat'
+  get '/seekings?categoryId=:categoryId', to: 'seekings#index', as: 'seekingCat'
   get '/seeking/posts/:id', to: 'seekings#show', as: 'seeking'
   get '/seekings/new', to: 'seekings#new', as: 'newSeekingGig'
   post '/seekings/create', to: 'seekings#create', as: 'createSeekingGig'

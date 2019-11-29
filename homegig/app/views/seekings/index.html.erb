@@ -1,45 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
+<div class="container">
 
-<head>
+  <div class="row">
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+    <div class="col-lg-3">
 
-  <title>Shop Homepage - Start Bootstrap Template</title>
-
-  <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
-  <link href="css/shop-homepage.css" rel="stylesheet">
-
-</head>
-
-<body>
-  <!-- Page Content -->
-  <div class="container">
-
-    <div class="row">
-
-      <div class="col-lg-3">
-
-        <h4 class="my-4">Categories</h4>
-        <div class="list-group">
-          <% @categories.each do |category| %>
-            <%= link_to category.name, seekingCat_path(category), class:"list-group-item" %>
-          <% end %>
-          <%= link_to 'View All', seekingAll_path, class:"list-group-item" %>
-        </div>
+      <h4 class="my-4">Categories</h4>
+      <div class="list-group">
+        <% @categories.each do |category| %>
+          <%= link_to category.name, seekingCat_path(category), class:"list-group-item" %>
+        <% end %>
+        <%= link_to 'View All', seekingAll_path, class:"list-group-item" %>
+      </div>
 
       </div>
       <!-- /.col-lg-3 -->
 
       <div class="col-lg-9">
 
-      <h1 class="my-4">Seeking Gigs</h1>
+        <h1 class="my-4">Seeking Gigs</h1>
+
+        <div class="row pt-3 pb-5">
+          <div class="col-lg-6">
+          <%= form_tag(seekingAll_path, :method => "get", class: 'navbar-form navbar-left') do %>  
+            <div class="input-group">  
+              <% if @current_category_id %>
+                <%= hidden_field_tag :categoryId, @current_category_id %>
+              <% end %>
+              <%= search_field_tag :name, params[:name], placeholder: "Search gigs by name", class: "form-control" %>  
+              <div class="input-group-append">
+                <button class="btn btn-secondary search" type="submit">
+                  <i class="fa fa-search"></i>
+                </button>
+              </div> 
+            </div>  
+          <% end %>
+          </div>
+        </div>
 
         <div class="row">
         <% @posts.each do |post| %>
@@ -55,24 +51,16 @@
               </div>
             </div>
           </div>
-          <% end %>
-
-        </div>
-        <!-- /.row -->
+        <% end %>
 
       </div>
-      <!-- /.col-lg-9 -->
+      <!-- /.row -->
 
     </div>
-    <!-- /.row -->
+    <!-- /.col-lg-9 -->
 
   </div>
-  <!-- /.container -->
+  <!-- /.row -->
 
-  <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-</body>
-
-</html>
+</div>
+<!-- /.container -->
