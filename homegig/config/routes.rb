@@ -24,7 +24,9 @@ Rails.application.routes.draw do
   get '/offerings/posts/:id', to: 'offerings#show', as: 'offering'
   get '/offerings?categoryId=:categoryId', to: 'offerings#index', as: 'offeringCat'
   get '/offerings/new', to: 'offerings#new', as: 'newOfferingGig'
+  get 'offerings/:id/edit', to: 'offerings#edit', as: 'edit_offering'
   post '/offerings/create', to: 'offerings#create', as: 'createOfferingGig'
+  put 'offerings/:id/update', to: 'offerings#update', as: 'update_offering'
   post '/offerings/:id/notify_interest', to: 'notifications#notify_offering_interest', as: 'notify_offering_interest'
   devise_scope :post do
     get '/offerings/posts/:id/new', to: 'reviews#new', as: 'newReview'

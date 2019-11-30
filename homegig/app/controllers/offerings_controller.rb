@@ -29,14 +29,15 @@ class OfferingsController < ApplicationController
     def create
         @newPost = current_user.posts.build(post_params)
         @categories = Category.all
+        flash[:error] = []
         if @newPost.save
             redirect_to '/offerings/'
         else
             if post_params[:title].size > 20 || post_params[:title].size < 5
-                flash[:error] = "Error: The Post Title has to be in between 5 and 20 characters."
+                flash[:error] << "The Post Title has to be in between 5 and 20 characters."
             end
             if post_params[:content].size < 10 ||  post_params[:content].size > 200
-                flash[:error] = "Error: The Post Content has to be in between 10 and 200 characters"
+                flash[:error] << "The Post Content has to be in between 10 and 200 characters"
             end
             redirect_to '/offerings/new'
         end
@@ -44,7 +45,27 @@ class OfferingsController < ApplicationController
 
     def manage
         @gigs = current_user.posts
-      end
+    end
+
+    def edit
+        @post = Post.find(params[:id])
+        @categories = Category.all
+    end
+
+    def update
+        post = Post.find(params[:id])
+        if post.user.id == current_user.id # Make sure user can modify this gig
+            if post.update(post_params)
+                flash[:edit_success] = "You have successfully edited your gig"
+                redirect_to manage_path
+            else
+                #### TODO: show errors ###
+                redirect_to edit_offering_path(post)
+            end
+        else
+            redirect_to edit_offering_path(post) ### TODO: show error saying user can't modify this gig ###
+        end
+    end
 
     private
     def post_params

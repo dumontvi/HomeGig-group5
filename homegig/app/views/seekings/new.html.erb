@@ -19,13 +19,21 @@
   <!-- Create Form -->
   <div class="col-lg-5 ml-5 mt-5"> 
   <h2 align="center" class="pb-3 text-white"> Search for services today </h2>
+
+  <% flash.each do |name, message| %>
+    <div class="alert alert-<%= name %>">
+    <h2>Errors</h2>
+    <% if Array === message %>
+      <ul>
+      <% message.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    <% else %>
+      <%= message %>
+    <% end %>
   
-  <% [:error].each do |key| %> 
-    <%   if flash[key] %> 
-      <div class="<%= key %>" id="flash"> 
-        <%= flash[key] %> 
-      </div> 
-    <% end %> 
+    </div>
   <% end %>
   
   <%= form_with scope: :post, url: createSeekingGig_path, local: true do |form| %>
