@@ -15,7 +15,7 @@
         <div class="notice"><%= flash[:edit_success] %></div>
       <% end %>
 
-      <% if @gigs.size == 0 %>
+      <% if @posts.size == 0 and @sposts.size == 0%>
             
           <div class="container-fluid">
               <p>You have no Gigs</p>  
@@ -24,13 +24,26 @@
       <% else %>
 
         <div class="row justify-content-center mt-5 ml-5 ml-5 mr-5" id="form">
-          <div class="col-lg-7 mt-4 mb-2">
+          <div class="col-lg-6 mt-4 mb-2">
+            <h2 align="center">Offerings</h2>
             <ul class="list-group list-group-flush" id="lg-form">
-              <% @gigs.each do |gig| %>
+              <% @posts.each do |post| %>
                 <li class="list-group-item">
-                  <a href="<%= offering_path(gig) %>"><strong><%= gig.title %></strong></a>
-                  <p><%= gig.content %></p>
-                  <%= link_to "Edit", edit_offering_path(gig), method: :get, class: "btn btn-success" %> 
+                  <a href="<%= offering_path(post) %>"><strong><%= post.title %></strong></a>
+                  <p><%= post.content %></p>
+                  <%= link_to "Edit", edit_offering_path(post), method: :get, class: "btn btn-success" %> 
+                </li>
+              <%end%>
+            </ul>
+          </div>
+          <div class="col-lg-6 mt-4 mb-2">
+            <h2 align="center">Seekings</h2>
+            <ul class="list-group list-group-flush" id="lg-form">
+              <% @sposts.each do |sposts| %>
+                <li class="list-group-item">
+                  <a href="<%= seeking_path(sposts) %>"><strong><%= sposts.title %></strong></a>
+                  <p><%= sposts.content %></p>
+                  <%= link_to "Edit", edit_seeking_path(sposts), method: :get, class: "btn btn-success" %> 
                 </li>
               <%end%>
             </ul>

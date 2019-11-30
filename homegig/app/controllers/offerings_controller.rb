@@ -44,7 +44,8 @@ class OfferingsController < ApplicationController
     end
 
     def manage
-        @gigs = current_user.posts
+        @posts = current_user.posts
+        @sposts = current_user.sposts
     end
 
     def edit

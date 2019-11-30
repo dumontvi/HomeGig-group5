@@ -38,7 +38,9 @@ Rails.application.routes.draw do
   get '/seekings?categoryId=:categoryId', to: 'seekings#index', as: 'seekingCat'
   get '/seeking/posts/:id', to: 'seekings#show', as: 'seeking'
   get '/seekings/new', to: 'seekings#new', as: 'newSeekingGig'
+  get 'seekings/:id/edit', to: 'seekings#edit', as: 'edit_seeking'
   post '/seekings/create', to: 'seekings#create', as: 'createSeekingGig'
+  put 'seekings/:id/update', to: 'seekings#update', as: 'update_seeking'
   post '/seekings/:id/notify_interest', to: 'notifications#notify_seeking_interest', as: 'notify_seeking_interest'
 
   get 'notifications', to: 'notifications#notifications'
