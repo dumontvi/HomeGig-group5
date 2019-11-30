@@ -1,4 +1,6 @@
 class Post < ApplicationRecord
+    mount_uploader :gig_image, ImageUploader
+
     belongs_to :user
     belongs_to :category
     has_many :reviews, dependent: :destroy

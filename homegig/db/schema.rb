@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 2019_11_30_201310) do
     t.integer "price"
     t.bigint "category_id"
     t.bigint "user_id"
+    t.string "gig_image", default: "", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["category_id"], name: "index_posts_on_category_id"
@@ -81,6 +82,7 @@ ActiveRecord::Schema.define(version: 2019_11_30_201310) do
     t.integer "price"
     t.bigint "category_id"
     t.bigint "user_id"
+    t.string "seek_gig_image", default: "", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["category_id"], name: "index_sposts_on_category_id"

@@ -1,4 +1,6 @@
 class Spost < ApplicationRecord
+    mount_uploader :seek_gig_image, ImageUploader
+
     belongs_to :user
     belongs_to :category
 

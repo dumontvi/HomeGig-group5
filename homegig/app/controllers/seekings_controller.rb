@@ -46,7 +46,7 @@ class SeekingsController < ApplicationController
 
     private
     def post_params
-        params.require(:post).permit(:title, :content, :price, :category_id).merge(user_id: current_user.id)
+        params.require(:post).permit(:title, :content, :price, :category_id, :seek_gig_image).merge(user_id: current_user.id)
     end
 
 end
