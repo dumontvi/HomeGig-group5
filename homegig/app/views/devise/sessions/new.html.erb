@@ -1,6 +1,6 @@
 <div class="row">
 <div class="col-lg-6">
-  <!-- Sign-up form -->
+  <!-- Login form -->
   <div id="sign-up-form">
     <div class="row justify-content-center">
     <div class="col-sm-6 col-sm-offset-3 col-lg-8 pt-4 pb-5 pl-5 pr-5 text-white shadow-lg login-box" id="sign_up_box">
@@ -12,12 +12,14 @@
             <%= f.email_field :email, 
                 autofocus: true, 
                 class: 'form-control', 
-                placeholder: 'email' %>
+                placeholder: 'email',
+                required:true %>
 
             <%= f.password_field  :password, 
                     autocomplete: "off", 
                     class: 'form-control',
-                    placeholder: 'password' %>
+                    placeholder: 'password',
+                    required:true %>
 
 
             <% if devise_mapping.rememberable? -%>
@@ -25,7 +27,16 @@
             <% end -%>
 
             <%= f.submit "Log in", class: 'form-control login-button sign-up-button' %>
-        <% end %>      
+        <% end %> 
+        
+        <% [:alert].each do |key| %> 
+          <%   if flash[key] %> 
+            <div class="<%= key %>" id="flash"> 
+              <%= flash[key] %> 
+            </div> 
+          <% end %> 
+        <% end %>
+
     </div>
   </div> 
   </div>
