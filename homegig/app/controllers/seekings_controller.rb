@@ -40,8 +40,30 @@ class SeekingsController < ApplicationController
         end
     end
 
-    def get_seekings_by_name
-        render index
+    def edit
+        @post = Spost.find(params[:id])
+        @categories = Category.all
+    end
+
+    def update
+        post = Spost.find(params[:id])
+        flash[:error] = []
+        if post.user.id == current_user.id # Make sure user can modify this gig
+            if post.update(post_params)
+                flash[:edit_success] = "You have successfully edited your gig"
+                redirect_to manage_path
+            else
+                if post_params[:title].size > 20 || post_params[:title].size < 5
+                    flash[:error] << "The Post Title has to be in between 5 and 20 characters."
+                end
+                if post_params[:content].size < 10 ||  post_params[:content].size > 200
+                    flash[:error] << "The Post Content has to be in between 10 and 200 characters"
+                end
+                redirect_to edit_seeking_path(post)
+            end
+        else
+            redirect_to edit_seeking_path(post)
+        end
     end
 
     private
