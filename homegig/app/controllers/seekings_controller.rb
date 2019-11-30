@@ -26,9 +26,18 @@ class SeekingsController < ApplicationController
 
     def create
         @newPost =Spost.new(post_params)
-        @newPost.save
-
-        redirect_to '/seekings/'
+        
+        if @newPost.save
+            redirect_to '/seekings/'
+        else
+            if post_params[:title].size > 20 || post_params[:title].size < 5
+                flash[:error] = "Error: The Post Title has to be in between 5 and 20 characters."
+            end
+            if post_params[:content].size < 10 ||  post_params[:content].size > 200
+                flash[:error] = "Error: The Post Content has to be in between 10 and 200 characters"
+            end
+            redirect_to '/seekings/new'
+        end
     end
 
     def get_seekings_by_name
