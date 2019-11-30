@@ -45,7 +45,27 @@ class OfferingsController < ApplicationController
 
     def manage
         @gigs = current_user.posts
-      end
+    end
+
+    def edit
+        @post = Post.find(params[:id])
+        @categories = Category.all
+    end
+
+    def update
+        post = Post.find(params[:id])
+        if post.user.id == current_user.id # Make sure user can modify this gig
+            if post.update(post_params)
+                flash[:edit_success] = "You have successfully edited your gig"
+                redirect_to manage_path
+            else
+                #### TODO: show errors ###
+                redirect_to edit_offering_path(post)
+            end
+        else
+            redirect_to edit_offering_path(post) ### TODO: show error saying user can't modify this gig ###
+        end
+    end
 
     private
     def post_params
