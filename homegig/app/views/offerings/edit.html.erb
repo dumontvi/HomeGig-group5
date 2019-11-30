@@ -1,34 +1,41 @@
 <div class="container">
     <h2 align="center" class="pb-3 text-white"> Edit Gig </h2>
 
-    <% [:error].each do |key| %> 
-        <% if flash[key] %> 
-            <div class="<%= key %>" id="flash"> 
-                <%= flash[key] %> 
-            </div> 
-        <% end %> 
-    <% end %>
+    <% flash.each do |name, message| %>
+        <div class="alert alert-<%= name %>">
+        <h2>Errors</h2>
+        <% if Array === message %>
+          <ul>
+          <% message.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        <% else %>
+          <%= message %>
+        <% end %>
+        </div>
+      <% end %>
 
     <%= form_with scope: :post, url: update_offering_path, method: :put, local: true do |form| %>
 
         <div class="row pr-3 pl-3 pt-3">
             <div class="form-group">  
                 <label for="exampleFormControlInput1" class="createGig">Title</label>
-                <%= form.text_field :title, id:"title", class:"form-control" %>
+                <%= form.text_field :title, min:5, required:true, id:"title", class:"form-control" %>
             </div>
         </div>
 
         <div class="row pr-3 pl-3">
             <div class="form-group">
                 <label for="exampleFormControlTextarea1" class="createGig">Description</label>
-                <%= form.text_area :content, cols: "100", rows: "5", id:"descriptionBox", class:"form-control" %>
+                <%= form.text_area :content, required:true, cols: "100", rows: "5", id:"descriptionBox", class:"form-control" %>
             </div>
         </div>
 
         <div class="row pr-3 pl-3">
             <div class="form-group">
                 <label for="exampleFormControlInput1" class="createGig">Price</label>
-                <%= form.text_field :price, id:"price", class:"form-control" %>
+                <%= form.number_field :price, min:1, step:1, required:true, id:"price", class:"form-control" %>
             </div>
         </div>
 
