@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   devise_scope :user do
     get 'signup', to: 'devise/registrations#new'
     get 'profile_management', to: 'profiles#profile_management'
+    put 'update_user_profile', to: 'profiles#update_user'
     get 'manage', to: 'offerings#manage'
   end
 
