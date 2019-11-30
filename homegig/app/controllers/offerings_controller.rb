@@ -32,11 +32,11 @@ class OfferingsController < ApplicationController
         if @newPost.save
             redirect_to '/offerings/'
         else
-            if post_params[:title].size > 20
-                flash[:error] = ["Error: The Post Title can be a maximum of 20 characters."]
+            if post_params[:title].size > 20 || post_params[:title].size < 5
+                flash[:error] = "Error: The Post Title has to be in between 5 and 20 characters."
             end
             if post_params[:content].size < 10 ||  post_params[:content].size > 200
-                flash[:error] << "Error: The Post Content can only be in between 10 and 200 characters"
+                flash[:error] = "Error: The Post Content has to be in between 10 and 200 characters"
             end
             redirect_to '/offerings/new'
         end
