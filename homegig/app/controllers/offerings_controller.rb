@@ -28,9 +28,18 @@ class OfferingsController < ApplicationController
     
     def create
         @newPost = current_user.posts.build(post_params)
-        @newPost.save
-
-        redirect_to '/offerings/'
+        @categories = Category.all
+        if @newPost.save
+            redirect_to '/offerings/'
+        else
+            if post_params[:title].size > 20
+                flash[:error] = ["Error: The Post Title can be a maximum of 20 characters."]
+            end
+            if post_params[:content].size < 10 ||  post_params[:content].size > 200
+                flash[:error] << "Error: The Post Content can only be in between 10 and 200 characters"
+            end
+            redirect_to '/offerings/new'
+        end
     end
 
     def manage
