@@ -12,6 +12,8 @@
         <div class="row justify-content-center mt-5 ml-5 ml-5 mr-5" id="form">
           <div class="col-lg-5 mt-4 mb-2">
             <%= bootstrap_form_for(current_user, as: current_user, url: registration_path(current_user), html: { method: :put }) do |f| %>
+              <%= render "devise/shared/error_messages", resource: resource %>
+
               <%= f.text_field :email,
                 class: 'form-control' %>
               
