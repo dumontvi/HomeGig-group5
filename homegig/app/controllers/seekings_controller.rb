@@ -48,7 +48,7 @@ class SeekingsController < ApplicationController
     def update
         post = Spost.find(params[:id])
         flash[:error] = []
-        if post.user.id == current_user.id # Make sure user can modify this gig
+        if current_user and post.user.id == current_user.id # Make sure user can modify this gig
             if post.update(post_params)
                 flash[:edit_success] = "You have successfully edited your gig"
                 redirect_to manage_path
@@ -62,6 +62,7 @@ class SeekingsController < ApplicationController
                 redirect_to edit_seeking_path(post)
             end
         else
+            flash[:error] << "You cannot edit this gig"
             redirect_to edit_seeking_path(post)
         end
     end

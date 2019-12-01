@@ -56,12 +56,11 @@ class OfferingsController < ApplicationController
     def update
         post = Post.find(params[:id])
         flash[:error] = []
-        if post.user.id == current_user.id # Make sure user can modify this gig
+        if current_user and post.user.id == current_user.id # Make sure user can modify this gig
             if post.update(post_params)
                 flash[:edit_success] = "You have successfully edited your gig"
                 redirect_to manage_path
             else
-                #### TODO: show errors ###
                 if post_params[:title].size > 20 || post_params[:title].size < 5
                     flash[:error] << "The Post Title has to be in between 5 and 20 characters."
                 end
@@ -71,7 +70,8 @@ class OfferingsController < ApplicationController
                 redirect_to edit_offering_path(post)
             end
         else
-            redirect_to edit_offering_path(post) ### TODO: show error saying user can't modify this gig ###
+            flash[:error] = "You cannot edit this gig"
+            redirect_to edit_offering_path(post)
         end
     end
 
