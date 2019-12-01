@@ -70,7 +70,7 @@ class OfferingsController < ApplicationController
                 redirect_to edit_offering_path(post)
             end
         else
-            flash[:error] = "You cannot edit this gig"
+            flash[:error] << "You cannot edit this gig"
             redirect_to edit_offering_path(post)
         end
     end
