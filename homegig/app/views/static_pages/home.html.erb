@@ -66,12 +66,22 @@
         <div class="item-description">
             <div class="container">
                 <div class="row" id="row-home">
-                    <div class="col-xl-10 mx-auto">
-                        <h2 class="mb-4 font-weight-bold" align="center">Get Started with HomeGig</h2>
-                    </div>
-                    <div class="col-md-10 col-lg-8 col-xl-7 mx-auto" align="center">   
-                        <%= link_to "Register", signup_path(), class: "btn btn-success" %>    
-                    </div>
+                    <% if not user_signed_in? %>
+                      <div class="col-xl-10 mx-auto">
+                          <h2 class="mb-4 font-weight-bold" align="center">Get Started with HomeGig</h2>
+                      </div>
+                      <div class="col-md-10 col-lg-8 col-xl-7 mx-auto" align="center">   
+                          <%= link_to "Register", signup_path(), class: "btn btn-success" %>    
+                      </div>
+                    <% else %>
+                      <div class="col-xl-10 mx-auto">
+                        <h1 class="mb-4 font-weight-bold" align="center">Create A Gig Today</h1>
+                      </div>
+                      <div class="col-md-10 col-lg-8 col-xl-7 mx-auto" align="center">   
+                        <%= link_to "Offer your services", newOfferingGig_path, class: "btn btn-success mb-3" %>
+                        <%= link_to "Seek out a service", newSeekingGig_path, class: "btn btn-success" %>
+                      </div>
+                    <%end%>
                 </div>
             </div>
         </div>

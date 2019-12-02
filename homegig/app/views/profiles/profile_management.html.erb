@@ -37,6 +37,17 @@
                 placeholder: current_user.email, 
                 class: 'form-control',
                 required:true %>
+            <% if current_user.about.size != 0 %>
+                <%= f.text_area :about,
+                placeholder: current_user.about, 
+                class: 'form-control',
+                required:true %>
+            <% else %>
+                <%= f.text_area :about,
+                placeholder: "Add something about yourself", 
+                class: 'form-control',
+                required:true %>
+            <% end %>
             <%= image_tag(current_user.profile_picture.url, alt: '..', size:'80x80', :class => "mb-3 rounded-circle img-thumbnail shawdow-sm profile-image") if current_user.profile_picture? %>
             <%= f.file_field :profile_picture,
               class: 'form-control' %>
