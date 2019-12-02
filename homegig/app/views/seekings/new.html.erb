@@ -21,20 +21,21 @@
   <h2 align="center" class="pb-3 text-white"> Search for services today </h2>
 
   <% flash.each do |name, message| %>
-    <div class="alert alert-<%= name %>">
-    <h2>Errors</h2>
-    <% if Array === message %>
-      <ul>
-      <% message.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    <% else %>
-      <%= message %>
+    <% if name != "notice" %>
+      <div class="alert alert-<%= name %>">
+        <h2>Errors</h2>
+        <% if Array === message %>
+          <ul>
+            <% message.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        <% else %>
+          <%= message %>
+        <% end %>
+      </div>
     <% end %>
-  
-    </div>
-  <% end %>
+  <%end%>
   
   <%= form_with scope: :post, url: createSeekingGig_path, local: true do |form| %>
   <div class="row pr-3 pl-3 pt-3">
