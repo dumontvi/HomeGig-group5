@@ -45,8 +45,7 @@
             <% else %>
                 <%= f.text_area :about,
                 placeholder: "Add something about yourself", 
-                class: 'form-control',
-                required:true %>
+                class: 'form-control' %>
             <% end %>
             <%= image_tag(current_user.profile_picture.url, alt: '..', size:'80x80', :class => "mb-3 rounded-circle img-thumbnail shawdow-sm profile-image") if current_user.profile_picture? %>
             <%= f.file_field :profile_picture,

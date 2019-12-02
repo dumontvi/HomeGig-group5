@@ -10,5 +10,6 @@ class User < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :notifications, dependent: :destroy
   validates_uniqueness_of :name
-  validates :name, presence:true, length:{in: 3..200}
+  validates :name, presence:true, length:{in: 3..20}
+  validates :about, length:{in: 1..200}
 end

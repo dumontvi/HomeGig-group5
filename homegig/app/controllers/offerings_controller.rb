@@ -1,5 +1,5 @@
 class OfferingsController < ApplicationController
-
+    
     def index
         if params[:name].blank? 
             @posts = Post.all
