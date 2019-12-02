@@ -1,63 +1,77 @@
 <div class="container">
+
     <h2 align="center" class="pb-3 text-white"> Edit Gig </h2>
 
-    <% flash.each do |name, message| %>
-        <div class="alert alert-<%= name %>">
-        <h2>Errors</h2>
-        <% if Array === message %>
-          <ul>
-          <% message.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-          </ul>
-        <% else %>
-          <%= message %>
+    <div class='row'>
+
+        <% if @post.gig_image.file %>
+            <div class="col-lg-5 ml-5 mt-5"> 
+                <div class="card mt-4">
+                    <img class="card-img-top img-fluid" src=<%= @post.gig_image %> alt="">
+                </div>
+            </div>
         <% end %>
-        </div>
-      <% end %>
 
-    <%= form_with scope: :post, url: update_offering_path, method: :put, local: true do |form| %>
+        <div class="col-lg-5 ml-5 mt-5"> 
+            <% flash.each do |name, message| %>
+                <div class="alert alert-<%= name %>">
+                <h2>Errors</h2>
+                <% if Array === message %>
+                <ul>
+                <% message.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+                </ul>
+                <% else %>
+                <%= message %>
+                <% end %>
+                </div>
+            <% end %>
 
-        <div class="row pr-3 pl-3 pt-3">
-            <div class="form-group">  
-                <label for="exampleFormControlInput1" class="createGig">Title</label>
-                <%= form.text_field :title, min:5, required:true, id:"title", class:"form-control" %>
-            </div>
-        </div>
+            <%= form_with scope: :post, url: update_offering_path, method: :put, local: true do |form| %>
 
-        <div class="row pr-3 pl-3">
-            <div class="form-group">
-                <label for="exampleFormControlTextarea1" class="createGig">Description</label>
-                <%= form.text_area :content, required:true, cols: "100", rows: "5", id:"descriptionBox", class:"form-control" %>
-            </div>
-        </div>
+                <div class="row pr-3 pl-3 pt-3">
+                    <div class="form-group">  
+                        <label for="exampleFormControlInput1" class="createGig">Title</label>
+                        <%= form.text_field :title, min:5, required:true, id:"title", class:"form-control" %>
+                    </div>
+                </div>
 
-        <div class="row pr-3 pl-3">
-            <div class="form-group">
-                <label for="exampleFormControlInput1" class="createGig">Price</label>
-                <%= form.number_field :price, min:1, step:1, required:true, id:"price", class:"form-control" %>
-            </div>
-        </div>
+                <div class="row pr-3 pl-3">
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1" class="createGig">Description</label>
+                        <%= form.text_area :content, required:true, cols: "100", rows: "5", id:"descriptionBox", class:"form-control" %>
+                    </div>
+                </div>
 
-        <div class="row pr-3 pl-3">
-            <div class="form-group">
-                <label for="exampleFormControlSelect1" class="createGig">Category</label><br/>
-                <%= form.select :category_id, options_from_collection_for_select(@categories, 'id','name', @post.category.id), 
-                    {}, class:"form-control" %>
-            </div>
-        </div>
+                <div class="row pr-3 pl-3">
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1" class="createGig">Price</label>
+                        <%= form.number_field :price, min:1, step:1, required:true, id:"price", class:"form-control" %>
+                    </div>
+                </div>
 
-        <div class="row pr-3 pl-3">
-            <div class="form-group">
-                <label for="exampleFormControlFile1" class="createGig">Image</label>
-                <input type="file" class="form-control-file" id="exampleFormControlFile1">
-            </div>
-        </div>
+                <div class="row pr-3 pl-3">
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1" class="createGig">Category</label><br/>
+                        <%= form.select :category_id, options_from_collection_for_select(@categories, 'id','name', @post.category.id), 
+                            {}, class:"form-control" %>
+                    </div>
+                </div>
 
-        <div class="row pr-3 pl-3 pb-3 pt-3">
-            <div class="form-group">
-            <%= form.submit "Edit Gig", class:"btn btn-success" %>
-            </div>
+                <div class="row pr-3 pl-3">
+                    <div class="form-group">
+                        <label for="exampleFormControlFile1" class="createGig">Image</label>
+                        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                    </div>
+                </div>
+
+                <div class="row pr-3 pl-3 pb-3 pt-3">
+                    <div class="form-group">
+                    <%= form.submit "Edit Gig", class:"btn btn-success" %>
+                    </div>
+                </div>
+            <% end %>
         </div>
-    <% end %>
+     </div>
 </div>
