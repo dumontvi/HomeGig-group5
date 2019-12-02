@@ -19,23 +19,42 @@
 
       <h1 class="my-4">Offering Gigs</h1>
 
-      <div class="row pt-3 pb-5">
-        <div class="col-lg-6">
-        <%= form_tag(offeringAll_path, :method => "get", class: 'navbar-form navbar-left') do %>  
-          <div class="input-group">  
-            <% if @current_category_id %>
-              <%= hidden_field_tag :categoryId, @current_category_id %>
+        <div class="row pt-3 pb-5">
+          <div class="col-lg-6">
+            <%= form_tag(offeringAll_path, :method => "get", class: 'navbar-form navbar-left') do %>  
+              <div class="input-group">  
+                <% if @current_category_id %>
+                  <%= hidden_field_tag :categoryId, @current_category_id %>
+                <% end %>
+                <%= search_field_tag :name, params[:name], placeholder: "Search gigs by name", class: "form-control" %>  
+                <div class="input-group-append">
+                  <button class="btn btn-secondary search" type="submit">
+                    <i class="fa fa-search"></i>
+                  </button>
+                </div> 
+              </div>  
             <% end %>
-            <%= search_field_tag :name, params[:name], placeholder: "Search gigs by name", class: "form-control" %>  
-            <div class="input-group-append">
-              <button class="btn btn-secondary search" type="submit">
-                <i class="fa fa-search"></i>
-              </button>
-            </div> 
-          </div>  
-        <% end %>
+          </div>
+          <div class="col-lg-6">
+            <%= form_with url: offeringAll_path, :method => "get" do |form| %>
+              <div class="input-group"> 
+                <div class="input-group-append">
+                  <% if @current_category_id %>
+                    <%= hidden_field_tag :categoryId, @current_category_id %>
+                  <% end %>
+                  <%= form.select :filter, 
+                      options_for_select([['Lowest to Highest Price', 'price_asc'], 
+                                        ['Highest to Lowest Price', 'price_desc'], 
+                                        ['Most Recent First', 'date']], 
+                                        @selected_filter),
+                      {}, 
+                      {onchange: 'this.form.submit();', class:"form-control"}               
+                  %>
+                </div> 
+              </div> 
+            <% end %>
+          </div>
         </div>
-      </div>
 
       <div class="row">
         <% if @posts.empty? %>
@@ -53,7 +72,8 @@
                   </h4>
                   <h5>$<%= post.price %></h5>
                   <p class="card-text"><%= post.content %></p>
-                  <h6><%= post.category.name %></h6>
+                  <span class="badge badge-dark"><%= post.category.name %></span>
+                  <small class="text-muted" align='right'><%= post.created_at.strftime("%Y-%m-%d") %></small>
                 </div>
               </div>
             </div>
