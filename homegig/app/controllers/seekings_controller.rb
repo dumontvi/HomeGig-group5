@@ -67,6 +67,20 @@ class SeekingsController < ApplicationController
         end
     end
 
+    def delete
+        post = Spost.find(params[:id])
+        if current_user and post.user.id == current_user.id # Make sure user can delete this gig
+            if post.destroy
+                flash[:delete_success] = "Gig successfully deleted"
+            else
+                flash[:error] = "An error occurred. Could not delete gig"
+            end
+        else
+            flash[:error] = "You cannot delete this gig"
+        end 
+        redirect_to manage_path   
+    end
+
     private
     def post_params
         params.require(:post).permit(:title, :content, :price, :category_id, :seek_gig_image).merge(user_id: current_user.id)

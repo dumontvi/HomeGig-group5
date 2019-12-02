@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   get 'offerings/:id/edit', to: 'offerings#edit', as: 'edit_offering'
   post '/offerings/create', to: 'offerings#create', as: 'createOfferingGig'
   put 'offerings/:id/update', to: 'offerings#update', as: 'update_offering'
+  delete 'offerings/:id/delete', to: 'offerings#delete', as: 'delete_offering'
   post '/offerings/:id/notify_interest', to: 'notifications#notify_offering_interest', as: 'notify_offering_interest'
   devise_scope :post do
     get '/offerings/posts/:id/new', to: 'reviews#new', as: 'newReview'
@@ -41,6 +42,7 @@ Rails.application.routes.draw do
   get 'seekings/:id/edit', to: 'seekings#edit', as: 'edit_seeking'
   post '/seekings/create', to: 'seekings#create', as: 'createSeekingGig'
   put 'seekings/:id/update', to: 'seekings#update', as: 'update_seeking'
+  delete 'seekings/:id/delete', to: 'seekings#delete', as: 'delete_seeking'
   post '/seekings/:id/notify_interest', to: 'notifications#notify_seeking_interest', as: 'notify_seeking_interest'
 
   get 'notifications', to: 'notifications#notifications'
