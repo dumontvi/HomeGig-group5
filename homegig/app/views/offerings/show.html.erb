@@ -1,4 +1,11 @@
  <div class="container">
+    
+ <!-- TODO: SHOW PRETTY -->
+ <% if flash[:interest_success]%>
+   <div class="success"><%= flash[:interest_success] %></div>
+ <% elsif flash[:interest_error]%>
+   <div class="alert"><%= flash[:interest_error] %></div>
+ <% end %>
 
     <div class="row">
       <!-- /.col-lg-3 -->

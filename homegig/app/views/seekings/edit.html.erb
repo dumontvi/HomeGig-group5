@@ -15,9 +15,8 @@
         <div class="col-lg-5 ml-5 mt-5"> 
             <% flash.each do |name, message| %>
                 <div class="alert alert-<%= name %>">
-                <h2>Errors</h2>
                 <% if Array === message %>
-                <ul>
+                <ul style="list-style: none;">
                 <% message.each do |msg| %>
                     <li><%= msg %></li>
                 <% end %>

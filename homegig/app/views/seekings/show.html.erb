@@ -2,9 +2,9 @@
 
 <!-- TODO: SHOW PRETTY -->
 <% if flash[:interest_success]%>
-  <div class="notice"><%= flash[:interest_success] %></div>
+  <div class="success"><%= flash[:interest_success] %></div>
 <% elsif flash[:interest_error]%>
-  <div class="notice"><%= flash[:interest_error] %></div>
+  <div class="alert"><%= flash[:interest_error] %></div>
 <% end %>
 
 <div class="row">
