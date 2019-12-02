@@ -25,7 +25,11 @@
             About <%= @post.user.name %>
           </div>
           <div class="card-body">
+          <% if @post.user.about.size() != 0 %>
             <%= @post.user.about %>
+          <% else %>
+            <p>This user does not have an about</p>
+          <% end %>
           </div>
 
           <div class="container-fluid">
