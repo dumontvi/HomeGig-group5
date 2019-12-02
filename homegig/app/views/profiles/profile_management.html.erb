@@ -31,10 +31,12 @@
             
             <%= f.text_field :name, 
                 placeholder: current_user.name, 
-                class: 'form-control' %>
-            <%= f.text_field :email,
+                class: 'form-control',
+                required:true %>
+            <%= f.email_field :email,
                 placeholder: current_user.email, 
-                class: 'form-control' %>
+                class: 'form-control',
+                required:true %>
             <%= image_tag(current_user.profile_picture.url, alt: '..', size:'80x80', :class => "mb-3 rounded-circle img-thumbnail shawdow-sm profile-image") if current_user.profile_picture? %>
             <%= f.file_field :profile_picture,
               class: 'form-control' %>
