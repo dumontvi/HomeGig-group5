@@ -35,6 +35,7 @@ class StripeController < ApplicationController
   def success
     session = Stripe::Checkout::Session.retrieve(params[:session_id])
     payment_intent = Stripe::PaymentIntent.retrieve(session['payment_intent'])
+    @receipt_url = payment_intent['charges']['data'][0]['receipt_url']
     create_payment_notification(session, payment_intent)
     hide_current_user_payment_notification(params[:notification_id])
   end
@@ -69,6 +70,7 @@ class StripeController < ApplicationController
         transfer_data: {
           destination: notification.from_user.stripe_user_id,
         },
+        receipt_email: current_user.email,
       },
       success_url: "#{stripe_success_url}?session_id={CHECKOUT_SESSION_ID}&notification_id=#{notification.id}",
       cancel_url: "#{stripe_error_url}",
