@@ -19,7 +19,7 @@
         </li>
         <li class="active">
             <a href="<%= edit_user_registration_path %>">
-                <i class="fas fa-home"></i>
+                <i class="fas fa-key"></i>
                 Change password
             </a>
         </li>
@@ -46,8 +46,7 @@
             </a>
         </li>
 
-        <% options = [{title: 'Manage Gigs', url: manage_url(current_user), icon: "fas fa-briefcase"},
-                        {title: 'Gig Statistics', url: '', icon: "fa fa-home"}] %>
+        <% options = [{title: 'Manage Gigs', url: manage_url(current_user), icon: "fas fa-briefcase"}] %>
         
         <li class="font-weight-normal pl-3 pt-3 pb-2 heading-profile">
             Gig Management
