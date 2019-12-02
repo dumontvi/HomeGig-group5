@@ -54,6 +54,7 @@
             class: 'form-control',
             required:true %>
         <%= f.file_field :profile_picture,
+            accept: 'image/png,image/gif,image/jpg', 
             class: 'form-control' %>
         <%= f.submit 'Sign up', 
             class: 'form-control sign-up-button' %>

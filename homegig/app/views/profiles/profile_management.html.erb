@@ -50,6 +50,7 @@
             <% end %>
             <%= image_tag(current_user.profile_picture.url, alt: '..', size:'80x80', :class => "mb-3 rounded-circle img-thumbnail shawdow-sm profile-image") if current_user.profile_picture? %>
             <%= f.file_field :profile_picture,
+              placeholder: current_user.profile_picture.to_s.split('/')[-1], 
               class: 'form-control' %>
             <%= f.submit 'Update', 
                 class: 'form-control sign-up-button mb-3' %>

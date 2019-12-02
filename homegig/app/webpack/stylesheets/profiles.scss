@@ -319,3 +319,10 @@ a.article:hover {
         visibility: hidden;
     }
 }
+
+.profile-image {
+    max-width: 80px;
+    max-height: 80px;
+    min-width: 80px;
+    min-height: 80px;
+}
