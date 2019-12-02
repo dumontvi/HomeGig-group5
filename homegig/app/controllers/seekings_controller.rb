@@ -11,6 +11,23 @@ class SeekingsController < ApplicationController
                 @posts = Spost.where(["LOWER(title) LIKE ?", "%#{params[:name].downcase}%"])
             end
         end 
+
+        if params[:filter].present?
+            if params[:filter] == 'price_asc'
+                @posts = @posts.order(:price)
+                @selected_filter = ['Lowest to Highest Price', 'price_asc']
+            elsif params[:filter] == 'price_desc'
+                @posts = @posts.order(price: :desc)
+                @selected_filter = ['Highest to Lowest Price', 'price_desc']
+            elsif params[:filter] == 'date'
+                @posts = @posts.order(created_at: :desc)
+                @selected_filter = ['Most Recent First', 'date']
+            end
+        else
+            @posts = @posts.order(created_at: :desc)
+            @selected_filter = ['Most Recent First', 'date']
+        end
+
         @current_category_id = params[:categoryId] if params[:categoryId].present?
         @categories = Category.all
     end

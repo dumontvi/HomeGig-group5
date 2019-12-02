@@ -21,38 +21,64 @@
 
         <div class="row pt-3 pb-5">
           <div class="col-lg-6">
-          <%= form_tag(seekingAll_path, :method => "get", class: 'navbar-form navbar-left') do %>  
-            <div class="input-group">  
-              <% if @current_category_id %>
-                <%= hidden_field_tag :categoryId, @current_category_id %>
-              <% end %>
-              <%= search_field_tag :name, params[:name], placeholder: "Search gigs by name", class: "form-control" %>  
-              <div class="input-group-append">
-                <button class="btn btn-secondary search" type="submit">
-                  <i class="fa fa-search"></i>
-                </button>
+            <%= form_tag(seekingAll_path, :method => "get", class: 'navbar-form navbar-left') do %>  
+              <div class="input-group">  
+                <% if @current_category_id %>
+                  <%= hidden_field_tag :categoryId, @current_category_id %>
+                <% end %>
+                <%= search_field_tag :name, params[:name], placeholder: "Search gigs by name", class: "form-control" %>  
+                <div class="input-group-append">
+                  <button class="btn btn-secondary search" type="submit">
+                    <i class="fa fa-search"></i>
+                  </button>
+                </div> 
+              </div>  
+            <% end %>
+          </div>
+          <div class="col-lg-6">
+            <%= form_with url: seekingAll_path, :method => "get" do |form| %>
+              <div class="input-group"> 
+                <div class="input-group-append">
+                  <% if @current_category_id %>
+                    <%= hidden_field_tag :categoryId, @current_category_id %>
+                  <% end %>
+                  <%= form.select :filter, 
+                      options_for_select([['Lowest to Highest Price', 'price_asc'], 
+                                        ['Highest to Lowest Price', 'price_desc'], 
+                                        ['Most Recent First', 'date']], 
+                                        @selected_filter),
+                      {}, 
+                      {onchange: 'this.form.submit();', class:"form-control"}               
+                  %>
+                </div> 
               </div> 
-            </div>  
-          <% end %>
+            <% end %>
           </div>
         </div>
 
-        <div class="row">
-        <% @posts.each do |post| %>
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <img class="card-img-top" src="<%= post.seek_gig_image %>" alt="">
-              <div class="card-body">
-                <h4 class="card-title">
-                  <%= link_to post.title, seeking_path(post) %>
-                </h4>
-                <h5>$<%= post.price %></h5>
-                <p class="card-text"><%= post.content %></p>
+        <% if @posts.empty? %>
+          <div class="row px-5">
+            <p>No gigs match this criteria</p>
+          </div>
+        <% else %>
+          <div class="row">
+          <% @posts.each do |post| %>
+            <div class="col-lg-4 col-md-6 mb-4">
+              <div class="card h-100">
+                <img class="card-img-top" src="<%= post.seek_gig_image %>" alt="">
+                <div class="card-body">
+                  <h4 class="card-title">
+                    <%= link_to post.title, seeking_path(post) %>
+                  </h4>
+                  <h5>$<%= post.price %></h5>
+                  <p class="card-text"><%= post.content %></p>
+                  <span class="badge badge-dark"><%= post.category.name %></span>
+                  <small class="text-muted" align='right'><%= post.created_at.strftime("%Y-%m-%d") %></small>
+                </div>
               </div>
             </div>
-          </div>
+          <% end %>
         <% end %>
-
       </div>
       <!-- /.row -->
 
