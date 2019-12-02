@@ -1,4 +1,6 @@
 language: ruby
 rvm:
- - 2.6.3
- - jruby
+  - 2.6.3
+  - jruby
+gemfile: homegig/Gemfile
+script: sh -c 'cd homegig && bundle exec rake'
