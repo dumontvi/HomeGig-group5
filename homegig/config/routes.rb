@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get 'privacy_policy', to: 'static_pages#privacy_policy'
   get 'terms_of_use', to: 'static_pages#terms_of_use'
   get 'contact', to: 'static_pages#contact'
+  get 'sitemap', to: 'static_pages#sitemap'
 
   get 'offerings', to: 'offerings#index', as: 'offeringAll'
   get '/offerings/posts/:id', to: 'offerings#show', as: 'offering'
@@ -30,6 +31,7 @@ Rails.application.routes.draw do
   put 'offerings/:id/update', to: 'offerings#update', as: 'update_offering'
   delete 'offerings/:id/delete', to: 'offerings#delete', as: 'delete_offering'
   post '/offerings/:id/notify_interest', to: 'notifications#notify_offering_interest', as: 'notify_offering_interest'
+  get 'search_gigs', to: 'offerings#search'
   devise_scope :post do
     get '/offerings/posts/:id/new', to: 'reviews#new', as: 'newReview'
     post '/offerings/posts/:id/create', to: 'reviews#create', as: 'createReview'
