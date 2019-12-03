@@ -1,7 +1,7 @@
 class OfferingsController < ApplicationController
     
     def index
-        if params[:name].blank? 
+        if params[:name].blank?
             @posts = Post.all
             @posts = @posts.category(params[:categoryId]) if params[:categoryId].present?
         else  
@@ -104,6 +104,25 @@ class OfferingsController < ApplicationController
             flash[:error] = "You cannot delete this gig"
         end 
         redirect_to manage_path   
+    end
+
+    def search
+        name = params[:name]
+        if params[:name].blank? 
+            redirect_to offeringAll_path(name: name)
+        else  
+            @posts = Post.where(["LOWER(title) LIKE ?", "%#{params[:name].downcase}%"])
+            if @posts.empty?
+                @posts = Spost.where(["LOWER(title) LIKE ?", "%#{params[:name].downcase}%"])
+                if @posts.empty?
+                    redirect_to offeringAll_path(name: name)
+                else
+                    redirect_to seekingAll_path(name: name)
+                end
+            else
+                redirect_to offeringAll_path(name: name)
+            end
+        end 
     end
 
     private

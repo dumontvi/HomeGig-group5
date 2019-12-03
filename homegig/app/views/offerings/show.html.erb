@@ -1,4 +1,11 @@
  <div class="container">
+    
+ <!-- TODO: SHOW PRETTY -->
+ <% if flash[:interest_success]%>
+   <div class="success"><%= flash[:interest_success] %></div>
+ <% elsif flash[:interest_error]%>
+   <div class="alert"><%= flash[:interest_error] %></div>
+ <% end %>
 
     <div class="row">
       <!-- /.col-lg-3 -->
@@ -6,7 +13,11 @@
       <div class="col-lg-9">
 
         <div class="card mt-4">
-          <img class="card-img-top img-fluid" src=<%= @post.gig_image %> alt="">
+          <% if @post.gig_image.file %>
+            <img class="card-img-top singleCard" src="<%= @post.gig_image %>" alt="Hi">
+          <% else %>
+            <img class="card-img-top singleCard" src="http://placehold.it/700x400" alt="Hi">
+          <% end %>
           <div class="card-body">
             <h3 class="card-title"><%= @post.title %></h3>
             <h4>$<%= @post.price %></h4>
@@ -56,7 +67,12 @@
                 <small class="text-muted">Posted by <%= review.user.name %></small>
                 <hr>
             <% end %>
-            <%= link_to "Leave a Review", newReview_path(@post), class: "btn btn-success" %>
+            <% if current_user and current_user.id != @post.user.id %>
+              <div class="card-body pl-0">
+              <%= link_to "Leave a Review", newReview_path(@post), class: "btn btn-success" %>
+              </div>
+            <% end %> 
+            
           </div>
         </div>
         <!-- /.card -->

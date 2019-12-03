@@ -2,9 +2,9 @@
 
 <!-- TODO: SHOW PRETTY -->
 <% if flash[:interest_success]%>
-  <div class="notice"><%= flash[:interest_success] %></div>
+  <div class="success"><%= flash[:interest_success] %></div>
 <% elsif flash[:interest_error]%>
-  <div class="notice"><%= flash[:interest_error] %></div>
+  <div class="alert"><%= flash[:interest_error] %></div>
 <% end %>
 
 <div class="row">
@@ -13,7 +13,12 @@
   <div class="col-lg-9">
 
     <div class="card mt-4">
-      <img class="card-img-top img-fluid" src=<%= @post.seek_gig_image %> alt="">
+
+      <% if @post.seek_gig_image.file %>
+        <img class="card-img-top singleCard" src="<%= @post.seek_gig_image %>" alt="Hi">
+      <% else %>
+        <img class="card-img-top singleCard" src="http://placehold.it/700x400" alt="Hi">
+      <% end %>
       <div class="card-body">
         <h3 class="card-title"><%= @post.title %></h3>
         <h4>$<%= @post.price %></h4>

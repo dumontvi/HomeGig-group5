@@ -387,4 +387,24 @@ body {
 
     .alert {
       color: red;
+      font-weight: bold;
+      font-size: 15px;
+      padding: 5px;
+    }
+
+    .success {
+      color: green;
+      font-weight: bold;
+      font-size: 15px;
+      padding: 5px;
+    }
+
+    .allCards {
+      max-height: 200px;
+      width:100%;
+    }
+
+    .singleCard {
+      max-height: 500px;
+      width:100%;
     }

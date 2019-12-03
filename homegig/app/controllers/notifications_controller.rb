@@ -10,12 +10,19 @@ class NotificationsController < ApplicationController
         post = Post.find(params[:id])
         category = NotificationCategory.find_by(name: 'Interest')
         if post and category and post.user.id != current_user.id
-            Notification.create(from_user: current_user,
-                                to_user: post.user,
-                                description: "#{current_user.email} is interested in your gig #{post.title}",
-                                post: post,
-                                notification_category: category,
-                                checked: false)
+            if current_user.stripe_user_id
+                Notification.create(from_user: current_user,
+                                    to_user: post.user,
+                                    description: "#{current_user.email} is interested in your gig #{post.title}",
+                                    post: post,
+                                    notification_category: category,
+                                    checked: false)
+                flash[:interest_success] = "You have sent a request to the gig's owner"
+                redirect_to offering_path(post)
+            else
+                flash[:interest_error] = "You need to register to Stripe in order to receive payments"
+                redirect_to offering_path(post)
+            end
         end
     end
 

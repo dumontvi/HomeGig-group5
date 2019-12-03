@@ -23,9 +23,8 @@
   <% flash.each do |name, message| %>
     <% if name != "notice" %>
       <div class="alert alert-<%= name %>">
-        <h2>Errors</h2>
         <% if Array === message %>
-          <ul>
+          <ul style="list-style: none;">
             <% message.each do |msg| %>
               <li><%= msg %></li>
             <% end %>

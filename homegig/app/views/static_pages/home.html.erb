@@ -1,101 +1,118 @@
 <div id="home-width">
-<div class="content-width mb-4">
-  <div class="slideshow overflow-hidden">
-    <!-- Slideshow Items -->
-    <div class="slideshow-items">
-      <div class="item">
-        <div class="item-image-container">
-          <img class="item-image" src="https://www.holeandcorner.com/site/wp-content/uploads/2018/05/Florian-4.jpg" />
-        </div>
-        <!-- Staggered Header Elements -->
-        <div class="ml-5 item-header">
-            <div class="item-header-1">
-                <span class="vertical-part"><b>O</b></span>
-                <span class="vertical-part"><b>f</b></span>
-                <span class="vertical-part"><b>f</b></span>
-                <span class="vertical-part"><b>e</b></span>
-                <span class="vertical-part"><b>r</b></span>
-            </div>
-            <div class="item-header-2 pl-5 ml-5">
-                <span class="vertical-part"><b>G</b></span>
-                <span class="vertical-part"><b>i</b></span>
-                <span class="vertical-part"><b>g</b></span>
-                <span class="vertical-part"><b>s</b></span>
-            </div>
-        </div>
-      </div>
-      <div class="item">
-        <div class="item-image-container">
-          <img class="item-image" src="https://ec.europa.eu/environment/europeangreencapital/wp-content/uploads/2018/05/Jos-Sluijsmans-3-e1526385391142.jpg" />
-        </div>
-        <!-- Staggered Header Elements -->
-        <div class="ml-5 item-header">
-            <div class="item-header-1">
-                <span class="vertical-part"><b>S</b></span>
-                <span class="vertical-part"><b>e</b></span>
-                <span class="vertical-part"><b>e</b></span>
-                <span class="vertical-part"><b>k</b></span>
-            </div>
-            <div class="item-header-2 pl-5 ml-5">
-                <span class="vertical-part"><b>W</b></span>
-                <span class="vertical-part"><b>o</b></span>
-                <span class="vertical-part"><b>r</b></span>
-                <span class="vertical-part"><b>k</b></span>
-            </div>
-        </div>
-      </div>
-      <div class="item">
-        <div class="item-image-container">
-          <img class="item-image" src="https://desiredleather.org/wp-content/uploads/2018/09/IMG_1170-e1569697265167.jpg" />
-        </div>
-        <!-- Staggered Header Elements -->
-        <div class="ml-5 item-header">
-                <div class="item-header-1">
-                <span class="vertical-part"><b>G</b></span>
-                <span class="vertical-part"><b>e</b></span>
-                <span class="vertical-part"><b>t</b></span>
-            </div>
-            <div class="item-header-2 pl-5 ml-5">
-                <span class="vertical-part"><b>P</b></span>
-                <span class="vertical-part"><b>a</b></span>
-                <span class="vertical-part"><b>i</b></span>
-                <span class="vertical-part"><b>d</b></span>
-            </div>
-        </div>
-        <!-- Staggered Description Elements -->
-        <div class="item-description">
-            <div class="container">
-                <div class="row" id="row-home">
-                    <% if not user_signed_in? %>
-                      <div class="col-xl-10 mx-auto">
-                          <h2 class="mb-4 font-weight-bold" align="center">Get Started with HomeGig</h2>
-                      </div>
-                      <div class="col-md-10 col-lg-8 col-xl-7 mx-auto" align="center">   
-                          <%= link_to "Register", signup_path(), class: "btn btn-success" %>    
-                      </div>
-                    <% else %>
-                      <div class="col-xl-10 mx-auto">
-                        <h1 class="mb-4 font-weight-bold" align="center">Create A Gig Today</h1>
-                      </div>
-                      <div class="col-md-10 col-lg-8 col-xl-7 mx-auto" align="center">   
-                        <%= link_to "Offer your services", newOfferingGig_path, class: "btn btn-success mb-3" %>
-                        <%= link_to "Seek out a service", newSeekingGig_path, class: "btn btn-success" %>
-                      </div>
-                    <%end%>
-                </div>
-            </div>
-        </div>
+  <div class="content-width mb-4">
+
+    <div class="row pt-3 py-5 justify-content-center">
+      <div class="col-lg-8">
+        <%= form_tag(search_gigs_path, :method => "get") do %>  
+          <div class="input-group">  
+            <%= search_field_tag :name, params[:name], placeholder: "Search any gig", class: "form-control" %>  
+            <div class="input-group-append">
+              <button class="btn btn-success search" type="submit">
+                <i class="fa fa-search"></i>
+              </button>
+            </div> 
+          </div>  
+        <% end %>
       </div>
     </div>
-    <div class="controls">
-      <ul>
-        <li class="control" data-index="0"></li>
-        <li class="control" data-index="1"></li>
-        <li class="control" data-index="2"></li>
-      </ul>
+
+    <div class="slideshow overflow-hidden">
+      <!-- Slideshow Items -->
+      <div class="slideshow-items">
+        <div class="item">
+          <div class="item-image-container">
+            <img class="item-image" src="https://www.holeandcorner.com/site/wp-content/uploads/2018/05/Florian-4.jpg" />
+          </div>
+          <!-- Staggered Header Elements -->
+          <div class="ml-5 item-header">
+              <div class="item-header-1">
+                  <span class="vertical-part"><b>O</b></span>
+                  <span class="vertical-part"><b>f</b></span>
+                  <span class="vertical-part"><b>f</b></span>
+                  <span class="vertical-part"><b>e</b></span>
+                  <span class="vertical-part"><b>r</b></span>
+              </div>
+              <div class="item-header-2 pl-5 ml-5">
+                  <span class="vertical-part"><b>G</b></span>
+                  <span class="vertical-part"><b>i</b></span>
+                  <span class="vertical-part"><b>g</b></span>
+                  <span class="vertical-part"><b>s</b></span>
+              </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="item-image-container">
+            <img class="item-image" src="https://ec.europa.eu/environment/europeangreencapital/wp-content/uploads/2018/05/Jos-Sluijsmans-3-e1526385391142.jpg" />
+          </div>
+          <!-- Staggered Header Elements -->
+          <div class="ml-5 item-header">
+              <div class="item-header-1">
+                  <span class="vertical-part"><b>S</b></span>
+                  <span class="vertical-part"><b>e</b></span>
+                  <span class="vertical-part"><b>e</b></span>
+                  <span class="vertical-part"><b>k</b></span>
+              </div>
+              <div class="item-header-2 pl-5 ml-5">
+                  <span class="vertical-part"><b>W</b></span>
+                  <span class="vertical-part"><b>o</b></span>
+                  <span class="vertical-part"><b>r</b></span>
+                  <span class="vertical-part"><b>k</b></span>
+              </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="item-image-container">
+            <img class="item-image" src="https://desiredleather.org/wp-content/uploads/2018/09/IMG_1170-e1569697265167.jpg" />
+          </div>
+          <!-- Staggered Header Elements -->
+          <div class="ml-5 item-header">
+                  <div class="item-header-1">
+                  <span class="vertical-part"><b>G</b></span>
+                  <span class="vertical-part"><b>e</b></span>
+                  <span class="vertical-part"><b>t</b></span>
+              </div>
+              <div class="item-header-2 pl-5 ml-5">
+                  <span class="vertical-part"><b>P</b></span>
+                  <span class="vertical-part"><b>a</b></span>
+                  <span class="vertical-part"><b>i</b></span>
+                  <span class="vertical-part"><b>d</b></span>
+              </div>
+          </div>
+          <!-- Staggered Description Elements -->
+          <div class="item-description">
+              <div class="container">
+                  <div class="row" id="row-home">
+                      <% if not user_signed_in? %>
+                        <div class="col-xl-10 mx-auto">
+                            <h2 class="mb-4 font-weight-bold" align="center">Get Started with HomeGig</h2>
+                        </div>
+                        <div class="col-md-10 col-lg-8 col-xl-7 mx-auto" align="center">   
+                            <%= link_to "Register", signup_path(), class: "btn btn-success" %>    
+                        </div>
+                      <% else %>
+                        <div class="col-xl-10 mx-auto">
+                          <h1 class="mb-4 font-weight-bold" align="center">Create A Gig Today</h1>
+                        </div>
+                        <div class="col-md-10 col-lg-8 col-xl-7 mx-auto" align="center">   
+                          <%= link_to "Offer your services", newOfferingGig_path, class: "btn btn-success mb-3" %>
+                          <%= link_to "Seek out a service", newSeekingGig_path, class: "btn btn-success" %>
+                        </div>
+                      <%end%>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="controls">
+        <ul>
+          <li class="control" data-index="0"></li>
+          <li class="control" data-index="1"></li>
+          <li class="control" data-index="2"></li>
+        </ul>
+      </div>
     </div>
   </div>
-</div>
+
 </div>
 
 <script>

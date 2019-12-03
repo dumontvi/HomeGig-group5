@@ -11,7 +11,7 @@ class ProfilesController < ApplicationController
     flash[:error] = []
     puts (User.all.where("email":update_params[:email]).present?)
     if current_user.update(update_params)
-        flash[:edit_success] = "You have successfully edited your profile"
+        flash[:success] = "You have successfully edited your profile"
     else
       if update_params[:name].size > 20 || update_params[:name].size < 3
         flash[:error] << "Your Username has to be in between 3 and 20 characters."
@@ -19,8 +19,7 @@ class ProfilesController < ApplicationController
       if update_params[:about].size > 200
         flash[:error] << "The About can have a maximum of 200 characters"
       end
-      #User.find.where("email":update_params[:email]).present?
-      if User.all.where("email":update_params[:email]).present?
+      if User.all.where("email":update_params[:email]).present? && update_params[:email] != current_user.email
         flash[:error] << "The Email is already in use"
       end
     end

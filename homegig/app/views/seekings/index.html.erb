@@ -65,7 +65,11 @@
           <% @posts.each do |post| %>
             <div class="col-lg-4 col-md-6 mb-4">
               <div class="card h-100">
-                <img class="card-img-top" src="<%= post.seek_gig_image %>" alt="">
+                <% if post.seek_gig_image.file %>
+                  <img class="card-img-top allCards" src="<%= post.seek_gig_image %>"" alt="Hi">
+                <% else %>
+                  <img class="card-img-top allCards" src="http://placehold.it/700x400" alt="Hi">
+                <% end %>
                 <div class="card-body">
                   <h4 class="card-title">
                     <%= link_to post.title, seeking_path(post) %>

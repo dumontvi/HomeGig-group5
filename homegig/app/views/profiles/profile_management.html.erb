@@ -16,17 +16,31 @@
           <%= bootstrap_form_for(current_user, :as => current_user, url: update_user_profile_path, html: { method: :put }) do |f| %>
             
             <% flash.each do |name, message| %>
-              <div class="alert alert-<%= name %>">
-                <% if Array === message %>
-                  <ul>
-                  <% message.each do |msg| %>
-                    <li><%= msg %></li>
+              <% if name != "success" %>
+                <div class="alert alert-<%= name %>">
+                  <% if Array === message %>
+                    <ul style="list-style: none;">
+                    <% message.each do |msg| %>
+                      <li><%= msg %></li>
+                    <% end %>
+                    </ul>
+                  <% else %>
+                    <%= message %>
                   <% end %>
-                  </ul>
-                <% else %>
-                  <%= message %>
-                <% end %>
-              </div>
+                </div>
+              <% else %>
+                <div class="success success-<%= name %>">
+                  <% if Array === message %>
+                    <ul style="list-style: none;">
+                    <% message.each do |msg| %>
+                      <li><%= msg %></li>
+                    <% end %>
+                    </ul>
+                  <% else %>
+                    <%= message %>
+                  <% end %>
+                </div>
+              <%end %>
             <% end %>
             
             <%= f.text_field :name, 
