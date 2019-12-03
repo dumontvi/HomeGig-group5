@@ -37,7 +37,11 @@
         About <%= link_to @post.user.name, seeking_path(@post.user) %>
       </div>
       <div class="card-body">
-        <%= @post.user.about %>
+        <% if @post.user.about.size() != 0 %>
+          <%= @post.user.about %>
+        <% else %>
+          <p>This user does not have an about</p>
+        <% end %>
       </div>
     </div>
 

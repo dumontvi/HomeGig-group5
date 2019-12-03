@@ -16,7 +16,7 @@
           <%= bootstrap_form_for(current_user, :as => current_user, url: update_user_profile_path, html: { method: :put }) do |f| %>
             
             <% flash.each do |name, message| %>
-              <% if name != "success" %>
+              <% if name != "success" && name != "notice" %>
                 <div class="alert alert-<%= name %>">
                   <% if Array === message %>
                     <ul style="list-style: none;">

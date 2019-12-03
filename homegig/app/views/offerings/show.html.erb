@@ -50,7 +50,7 @@
             <div class="row flex-nowrap overflow-auto">
               <% @posts.each do |gig| %>
                 <div class="col-3">
-                  <div class="card card-block"><%= link_to gig.title, offering_path(gig) %></div>
+                  <div class="card card-block allScrollingCards"><%= link_to gig.title, offering_path(gig), class:'scrollingCards'%></div>
                 </div>
               <% end %>
             </div>
