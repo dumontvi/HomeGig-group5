@@ -1,0 +1,39 @@
+<% static_elements = [{title: "About", url: about_path},
+                    {title: "FAQ", url: faq_path}, 
+                    {title: "Privacy Policy", url: privacy_policy_path},
+                    {title: "Terms of Use", url: terms_of_use_path},  
+                    {title: "Contact Us", url: contact_path}] %>
+
+<% user_elements = [{title: "Login", url: login_path}, 
+                      {title: "Sign Up", url: signup_path}] %>
+
+<% service_elements = [{title: "Offering Gigs", url: offeringAll_path},                                                                       
+                    {title: "Seeking Gigs", url: seekingAll_path}] %>
+
+<% element_types = [{page_title: "Information Pages", pages: static_elements},
+                    {page_title: "User Options", pages: user_elements},
+                    {page_title: "Service Types", pages: service_elements}] %>
+               
+<div class="about-us overflow-auto" id="about-us-container">
+    <div class="row" id="privacy-policy-masthead">
+        <div class="span6" style="float: none; margin: auto;">
+            <h1 class="font-weight-bold">Site Map</h1>
+        </div>
+    </div>
+    <div class="row bg-light justify-content-center" id="about-us-content">
+        <div class="col-lg-8 mt-5 mb-5 text-dark">
+                <% element_types.each do |page| %>
+                    <div>
+                        <h4 class="mt-2 mb-3"><%= page[:page_title] %></h4>
+                            <ul>
+                                <% page[:pages].each do |route| %>
+                                    <li class="text-primary"><%= link_to route[:title], route[:url] %></li>
+                                <% end %>
+                            </ul>
+                    </div>
+                <% end %>
+        </div>
+    </div>
+</div>
+          
+               
