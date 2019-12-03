@@ -31,6 +31,7 @@
             <ul class="list-group list-group-flush" id="lg-form">
               <% @posts.each do |post| %>
                 <li class="list-group-item">
+                  <img class="manage_image" src="<%= post.gig_image %>"><br><br>
                   <a href="<%= offering_path(post) %>"><strong><%= post.title %></strong></a>
                   <p><%= post.content %></p>
                   <%= link_to "Edit", edit_offering_path(post), method: :get, class: "btn btn-success" %>
@@ -45,6 +46,7 @@
             <ul class="list-group list-group-flush" id="lg-form">
               <% @sposts.each do |spost| %>
                 <li class="list-group-item">
+                  <img class="manage_image" src="<%= spost.seek_gig_image %>"><br><br>
                   <a href="<%= seeking_path(spost) %>"><strong><%= spost.title %></strong></a>
                   <p><%= spost.content %></p>
                   <%= link_to "Edit", edit_seeking_path(spost), method: :get, class: "btn btn-success" %> 
