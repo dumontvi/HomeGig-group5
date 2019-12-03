@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   put 'offerings/:id/update', to: 'offerings#update', as: 'update_offering'
   delete 'offerings/:id/delete', to: 'offerings#delete', as: 'delete_offering'
   post '/offerings/:id/notify_interest', to: 'notifications#notify_offering_interest', as: 'notify_offering_interest'
+  get 'search_gigs', to: 'offerings#search'
   devise_scope :post do
     get '/offerings/posts/:id/new', to: 'reviews#new', as: 'newReview'
     post '/offerings/posts/:id/create', to: 'reviews#create', as: 'createReview'
