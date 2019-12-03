@@ -13,7 +13,11 @@
       <div class="col-lg-9">
 
         <div class="card mt-4">
-          <img class="card-img-top img-fluid" src=<%= @post.gig_image %> alt="">
+          <% if @post.gig_image.file %>
+            <img class="card-img-top singleCard" src="<%= @post.gig_image %>" alt="Hi">
+          <% else %>
+            <img class="card-img-top singleCard" src="http://placehold.it/700x400" alt="Hi">
+          <% end %>
           <div class="card-body">
             <h3 class="card-title"><%= @post.title %></h3>
             <h4>$<%= @post.price %></h4>
