@@ -415,3 +415,16 @@ body {
       max-width: 80px;
       max-height: 80px;
     }
+
+    .scrollingCards {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+    }
+    
+    .allScrollingCards {
+      margin-top: 10px;
+      background: #343a40;
+    }
