@@ -1,4 +1,23 @@
-<%= render partial: '/static_pages/static',
-locals: {title: "About HomeGig" , 
-         content: "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-         masthead: "about-masthead"}%>
+<div class="about-us overflow-auto" id="about-us-container">
+    <div class="row" id="about-masthead">
+        <div class="span6" style="float: none; margin: auto;">
+            <h1 class="font-weight-bold">About HomeGig</h1>
+        </div>
+    </div>
+    <div class="row bg-light justify-content-center" id="about-us-content">
+        <div class="col-lg-8 mt-5 mb-5 text-dark">
+            <p> 
+                HomeGig is a service that allows users to find freelance work and/or offer their services to others. 
+                You can find work in different categories such as software development, marketing, design, marketing, photography, 
+                and many more. The process is very simple: just browse through our wide selection of gigs, find the one that fits 
+                your needs, contact the owner, and get paid.
+            </p>
+            <br>
+            <p> 
+                HomeGig provides an intuitive, easy to use interface so you can manage your gigs and find others that interest you.
+                It also sends you live notifications when someone has requested to do your job and when they leave you reviews.
+                Payments are directly done on the website using Stripe.
+            </p>
+        </div>
+    </div>
+</div>
