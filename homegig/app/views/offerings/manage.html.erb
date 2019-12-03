@@ -12,9 +12,9 @@
       </nav>
 
       <% if flash[:edit_success] %>
-        <div class="notice"><%= flash[:edit_success] %></div>
+        <div class="success"><%= flash[:edit_success] %></div>
       <% elsif flash[:delete_success] %>
-        <div class="notice"><%= flash[:delete_success] %></div>
+        <div class="success"><%= flash[:delete_success] %></div>
       <% end %>
 
       <% if @posts.size == 0 and @sposts.size == 0%>
