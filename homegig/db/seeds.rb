@@ -22,7 +22,7 @@ def seed_users
   
   
   def seed_categories
-    categories = ['Web Developement', 'Graphics Design', 'Tutoring', 'Other']
+    categories = ['Web Developement', 'Graphics Design', 'Multimedia', 'Digital Marketing', 'Electronic Services', 'Writing Services', 'Other']
   
     categories.each do |name|
       Category.create(name: name)
@@ -64,6 +64,6 @@ def seed_users
     end
   end
 
-
+  seed_users
   seed_categories
 
